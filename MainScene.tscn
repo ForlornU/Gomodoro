@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=6 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://LargeLabel.tres" id="1_x06a6"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://timer_label.tres" id="3_f5d3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gemb7"]
+bg_color = Color(0.15255, 0.503309, 0.696748, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 3
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Theme" id="Theme_s8gf5"]
+Button/font_sizes/font_size = 24
+Button/styles/normal = SubResource("StyleBoxFlat_gemb7")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -52,6 +68,7 @@ offset_right = 67.0
 offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_s8gf5")
 text = "Start Working"
 
 [node name="TimerLabel" type="Label" parent="ColorRect"]
@@ -62,12 +79,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -41.0
-offset_top = -153.0
+offset_top = -45.0
 offset_right = 41.0
-offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "00:00"
 label_settings = ExtResource("3_f5d3i")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
