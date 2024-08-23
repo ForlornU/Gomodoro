@@ -5,9 +5,11 @@ extends Control
 @onready var timer_label: Label = $ColorRect/TimerLabel
 var timer_active = false
 @onready var timer: Timer = $Timer
-@onready var button: Button = $ColorRect/Button
+@onready var button: Button = $ColorRect/StartButton
+@onready var settings_panel: Panel = $ColorRect/SettingsPanel
 
 func _ready() -> void:
+	settings_panel.visible = false
 	timer_label.text = "30:00"
 	timer.wait_time = 1800
 
@@ -32,3 +34,6 @@ func switch_state():
 
 func _on_timer_timeout() -> void:
 	_button_pressed()
+
+func _on_settings_button_pressed() -> void:
+	settings_panel.visible = !settings_panel.visible
