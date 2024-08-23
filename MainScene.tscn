@@ -84,17 +84,63 @@ icon = ExtResource("4_fogco")
 
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -210.5
+offset_right = 117.5
+offset_bottom = 210.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+
+[node name="CheckButton" type="CheckButton" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -168.0
-offset_right = 109.0
-offset_bottom = 246.0
+offset_left = 16.5
+offset_top = -49.0
+offset_right = 214.5
+offset_bottom = -15.0
 grow_vertical = 2
-theme = ExtResource("3_pm7a3")
+button_pressed = true
+text = "Always on top"
+
+[node name="SpinBox" type="SpinBox" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 44.5
+offset_right = 41.0625
+offset_bottom = 75.5
+grow_horizontal = 2
+min_value = 10.0
+max_value = 180.0
+value = 30.0
+
+[node name="Label" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_top = 4.5
+offset_right = 87.0
+offset_bottom = 38.5
+grow_horizontal = 2
+text = "Time (minutes)"
+label_settings = ExtResource("3_f5d3i")
 
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_button_pressed"]
 [connection signal="pressed" from="ColorRect/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="toggled" from="ColorRect/SettingsPanel/CheckButton" to="." method="_always_on_top_toggle"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
