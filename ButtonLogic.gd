@@ -1,24 +1,34 @@
 extends Control
 
+@onready var status_label: Label = $ColorRect/MainLabel
 @onready var color_rect: ColorRect = $ColorRect
 @onready var timer_label: Label = $ColorRect/TimerLabel
-var timer : float = 0.0
-var timer_status = false
+var timer_active = false
+@onready var timer: Timer = $Timer
+@onready var button: Button = $ColorRect/Button
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timer_label.text = "00:00"
+	timer_label.text = "30:00"
+	timer.wait_time = 1800
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	timer += delta
-	timer_label.text = str(timer)
+	timer_label.text = str(snappedf(timer.time_left, 0.1))
 
 func _button_pressed() -> void:
+	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
+		timer.start()
+	switch_state()
 
-	timer_status = !timer_status
+func switch_state():
+	timer_active = !timer_active
+	timer.paused = false
 	
-	if(timer_status == true):
+	if(timer_active == true):
 		color_rect.color = Color.RED
+		status_label.text = "Working Hard!"
 	else:
 		color_rect.color = Color.FOREST_GREEN
+		status_label.text = "Take a break!"
+
+func _on_timer_timeout() -> void:
+	_button_pressed()
