@@ -41,7 +41,7 @@ text = "Work Timer"
 label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="StartButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,7 +73,7 @@ text = "00:00"
 label_settings = ExtResource("3_f5d3i")
 horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="ColorRect"]
+[node name="SettingsButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 offset_left = 10.0
 offset_top = 10.0
@@ -82,7 +82,14 @@ offset_bottom = 60.0
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_fogco")
 
+[node name="SettingsPanel" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 84.0
+grow_vertical = 2
+
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="ColorRect/Button" to="." method="_button_pressed"]
+[connection signal="pressed" from="ColorRect/StartButton" to="." method="_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
