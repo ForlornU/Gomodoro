@@ -23,6 +23,7 @@ func _ready() -> void:
 	timer.wait_time = 1800
 
 func _process(_delta: float) -> void:
+	@warning_ignore("integer_division")
 	var minutes = int(timer.time_left) / 60
 	var seconds = int(timer.time_left) % 60
 	if(!timer.is_stopped()):
