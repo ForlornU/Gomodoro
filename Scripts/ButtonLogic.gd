@@ -46,7 +46,7 @@ func switch_state(state : State):
 	current_state = state
 
 #Switching state should always start timer, if not pause
-func start_if_stopped():
+func resume():
 	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
 		timer.start()
 	if(timer.paused == true):
@@ -83,13 +83,15 @@ func _on_pause() -> void:
 		switch_state(previous_state)
 	else:
 		switch_state(State.PAUSED)
-		
+
+#Start work
 func _button_pressed() -> void:
 	reset_timer()
-	start_if_stopped()
+	resume()
 	switch_state(State.WORK)
 
+#Start break
 func _take_break_button() -> void:
 	reset_timer()
-	start_if_stopped()
+	resume()
 	switch_state(State.BREAK)
