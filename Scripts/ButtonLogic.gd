@@ -3,17 +3,13 @@ extends Control
 enum State {WORK, BREAK, PAUSED}
 var current_state : State
 var previous_state : State
-var timer_active = false
 var user_selected_timer_value = 1800
 
 @onready var status_label: Label = $ColorRect/MainLabel
 @onready var color_rect: ColorRect = $ColorRect
 @onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
-@onready var button: Button = $ColorRect/WorkButton
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
-@onready var check_button: CheckButton = $ColorRect/SettingsPanel/CheckButton
-@onready var pause_button: Button = $ColorRect/PauseButton
 
 func _ready() -> void:
 	current_state = State.PAUSED
@@ -22,6 +18,7 @@ func _ready() -> void:
 	timer_label.text = "30:00"
 	timer.wait_time = 1800
 
+#Update time label every frame
 func _process(_delta: float) -> void:
 	@warning_ignore("integer_division")
 	var minutes = int(timer.time_left) / 60
@@ -31,8 +28,8 @@ func _process(_delta: float) -> void:
 
 func switch_state(state : State):
 	if(current_state == state):
-		print("Same state")
-		pass
+		print("ignoring same-state transition")
+		return
 	
 	previous_state = current_state
 	match state:
@@ -48,16 +45,18 @@ func switch_state(state : State):
 			status_label.text = "Paused!"
 	current_state = state
 
+#Switching state should always start timer, if not pause
 func start_if_stopped():
 	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
 		timer.start()
-	
 	if(timer.paused == true):
 		timer.paused = false
-		
+
+#Start timer with new time
 func reset_timer():
 	timer.start(user_selected_timer_value)
 
+#After the timer runs out, switch state
 func _on_timer_timeout() -> void:
 	reset_timer()
 	if(current_state == State.WORK):
