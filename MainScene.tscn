@@ -41,21 +41,37 @@ text = "Work Timer"
 label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="ColorRect"]
+[node name="WorkButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = 91.0
-offset_right = 67.0
-offset_bottom = 131.0
+offset_left = -175.0
+offset_top = 92.0
+offset_right = -16.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 text = "Start Working"
+
+[node name="BreakButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = 92.0
+offset_right = 191.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+text = "Take a break"
 
 [node name="TimerLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -83,6 +99,7 @@ theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_fogco")
 
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,10 +154,28 @@ grow_horizontal = 2
 text = "Time (minutes)"
 label_settings = ExtResource("3_f5d3i")
 
+[node name="PauseButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -17.0
+offset_right = -23.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+text = "||"
+
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="pressed" from="ColorRect/StartButton" to="." method="_button_pressed"]
+[connection signal="pressed" from="ColorRect/WorkButton" to="." method="_button_pressed"]
+[connection signal="pressed" from="ColorRect/BreakButton" to="." method="_take_break_button"]
 [connection signal="pressed" from="ColorRect/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/CheckButton" to="." method="_always_on_top_toggle"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
+[connection signal="pressed" from="ColorRect/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

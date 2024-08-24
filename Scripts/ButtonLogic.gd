@@ -2,6 +2,7 @@ extends Control
 
 enum State {WORK, BREAK, PAUSED}
 var current_state : State
+var previous_state : State
 var timer_active = false
 
 @onready var status_label: Label = $ColorRect/MainLabel
@@ -11,6 +12,7 @@ var timer_active = false
 @onready var button: Button = $ColorRect/StartButton
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var check_button: CheckButton = $ColorRect/SettingsPanel/CheckButton
+@onready var pause_button: Button = $ColorRect/PauseButton
 
 func _ready() -> void:
 	current_state = State.PAUSED
@@ -25,22 +27,23 @@ func _process(delta: float) -> void:
 	if(!timer.is_stopped()):
 		timer_label.text = str(minutes) + ":" + str(seconds)
 
-func _button_pressed() -> void:
-	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
-		timer.start()
-		current_state = State.WORK
-	switch_state()
-
-func switch_state():
-	if(current_state == State.WORK):
-		color_rect.color = Color.RED
-		status_label.text = "Working Hard!"
-	elif(current_state == State.BREAK):
-		color_rect.color = Color.FOREST_GREEN
-		status_label.text = "Take a break!"
-	else:
-		color_rect.color = Color.YELLOW
-		status_label.text = "Paused!"
+func switch_state(state : State):
+	if(current_state == state):
+		print("Same state")
+		pass
+	
+	previous_state = current_state
+	match state:
+		State.WORK:
+			color_rect.color = Color.RED
+			status_label.text = "Working Hard!"
+		State.BREAK:
+			color_rect.color = Color.FOREST_GREEN
+			status_label.text = "Take a break!"
+		State.PAUSED:
+			color_rect.color = Color.YELLOW
+			status_label.text = "Paused!"
+	current_state = state
 
 func _on_timer_timeout() -> void:
 	_button_pressed()
@@ -50,9 +53,23 @@ func _on_settings_button_pressed() -> void:
 
 func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
-	#ProjectSettings.set_setting("display/window/size/always_on_top", toggled_on)
 
 func _on_timevalue_changed(value: float) -> void:
 	print("value changed, float")
 	timer.wait_time = 60*value
 	timer_label.text = str(timer.wait_time)
+
+func _on_pause() -> void:
+	timer.paused = !timer.paused
+	if(timer.paused == false):
+		switch_state(previous_state)
+	else:
+		switch_state(State.PAUSED)
+		
+func _button_pressed() -> void:
+	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
+		timer.start()
+	switch_state(State.WORK)
+
+func _take_break_button() -> void:
+	switch_state(State.BREAK)
