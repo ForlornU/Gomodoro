@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="WorkTimer"
+config/description="Let this timer help you find a reasonable balance between work and free time!"
+config/version="0.1"
 run/main_scene="res://MainScene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://Assets/timer.png"
+config/icon="res://Assets/timer.png"
 
 [display]
 
