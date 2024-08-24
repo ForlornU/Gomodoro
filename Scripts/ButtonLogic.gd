@@ -10,7 +10,7 @@ var user_selected_timer_value = 1800
 @onready var color_rect: ColorRect = $ColorRect
 @onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
-@onready var button: Button = $ColorRect/StartButton
+@onready var button: Button = $ColorRect/WorkButton
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var check_button: CheckButton = $ColorRect/SettingsPanel/CheckButton
 @onready var pause_button: Button = $ColorRect/PauseButton
@@ -22,7 +22,7 @@ func _ready() -> void:
 	timer_label.text = "30:00"
 	timer.wait_time = 1800
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var minutes = int(timer.time_left) / 60
 	var seconds = int(timer.time_left) % 60
 	if(!timer.is_stopped()):
@@ -45,6 +45,10 @@ func switch_state(state : State):
 			color_rect.color = Color.YELLOW
 			status_label.text = "Paused!"
 	current_state = state
+	
+func start_if_stopped():
+	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
+		timer.start()
 
 func _on_timer_timeout() -> void:
 	_button_pressed()
@@ -70,11 +74,9 @@ func _on_pause() -> void:
 		switch_state(State.PAUSED)
 		
 func _button_pressed() -> void:
-	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
-		timer.start()
+	start_if_stopped()
 	switch_state(State.WORK)
 
 func _take_break_button() -> void:
-	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
-		timer.start()
+	start_if_stopped()
 	switch_state(State.BREAK)
