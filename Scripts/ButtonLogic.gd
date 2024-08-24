@@ -4,6 +4,7 @@ enum State {WORK, BREAK, PAUSED}
 var current_state : State
 var previous_state : State
 var timer_active = false
+var user_selected_timer_value = 1800
 
 @onready var status_label: Label = $ColorRect/MainLabel
 @onready var color_rect: ColorRect = $ColorRect
@@ -55,8 +56,10 @@ func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
 
 func _on_timevalue_changed(value: float) -> void:
-	print("value changed, float")
-	timer.wait_time = 60*value
+	print("New timer set to: " + str(value))
+	var new_time = 60*value
+	timer.wait_time = new_time
+	user_selected_timer_value = new_time
 	timer_label.text = str(timer.wait_time)
 
 func _on_pause() -> void:
@@ -72,4 +75,6 @@ func _button_pressed() -> void:
 	switch_state(State.WORK)
 
 func _take_break_button() -> void:
+	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
+		timer.start()
 	switch_state(State.BREAK)
