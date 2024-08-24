@@ -39,19 +39,30 @@ func switch_state(state : State):
 			color_rect.color = Color.RED
 			status_label.text = "Working Hard!"
 		State.BREAK:
+			reset_timer()
 			color_rect.color = Color.FOREST_GREEN
 			status_label.text = "Take a break!"
 		State.PAUSED:
 			color_rect.color = Color.YELLOW
 			status_label.text = "Paused!"
 	current_state = state
-	
+
 func start_if_stopped():
 	if(timer.is_stopped()): #This only happens at start, otherwise its just paused
 		timer.start()
+	
+	if(timer.paused == true):
+		timer.paused = false
+		
+func reset_timer():
+	timer.start(user_selected_timer_value)
 
 func _on_timer_timeout() -> void:
-	_button_pressed()
+	reset_timer()
+	if(current_state == State.WORK):
+		switch_state(State.BREAK)
+	elif(current_state == State.BREAK):
+		switch_state(State.WORK)
 
 func _on_settings_button_pressed() -> void:
 	settings_panel.visible = !settings_panel.visible
@@ -74,9 +85,11 @@ func _on_pause() -> void:
 		switch_state(State.PAUSED)
 		
 func _button_pressed() -> void:
+	reset_timer()
 	start_if_stopped()
 	switch_state(State.WORK)
 
 func _take_break_button() -> void:
+	reset_timer()
 	start_if_stopped()
 	switch_state(State.BREAK)
