@@ -3,13 +3,15 @@ extends Control
 enum State {WORK, BREAK, PAUSED}
 var current_state : State
 var previous_state : State
-var user_selected_timer_value = 1800
+var user_selected_timer_value = 1800 #Default 30 minutes
 
+#region references
 @onready var status_label: Label = $ColorRect/MainLabel
 @onready var color_rect: ColorRect = $ColorRect
 @onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
+#endregion
 
 func _ready() -> void:
 	current_state = State.PAUSED
@@ -56,6 +58,7 @@ func resume():
 func reset_timer():
 	timer.start(user_selected_timer_value)
 
+#region Buttons
 #After the timer runs out, switch state
 func _on_timer_timeout() -> void:
 	reset_timer()
@@ -95,3 +98,4 @@ func _take_break_button() -> void:
 	reset_timer()
 	resume()
 	switch_state(State.BREAK)
+#endregion
