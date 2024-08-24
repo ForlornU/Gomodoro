@@ -6,7 +6,7 @@ The app will switch between work-mode and break-mode back and forth, letting you
 
 This is recomended for people working from home, not at your job!
 
-![Skärmbild 2024-08-25 010737](https://github.com/user-attachments/assets/73beebb9-bafb-4bbe-99a9-ce2245f389ea)
+![Screenshot](https://github.com/ForlornU/Images/blob/6121adc1a7afab3a7b24a1f8c3f504f443c83f4f/WorkTimerScreenshot.png)
 
 Created by ForlornU
 
