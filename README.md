@@ -6,6 +6,8 @@ The app will switch between work-mode and break-mode back and forth, letting you
 
 This is recomended for people working from home, not at your job!
 
+![Skärmbild 2024-08-25 010737](https://github.com/user-attachments/assets/73beebb9-bafb-4bbe-99a9-ce2245f389ea)
+
 Created by ForlornU
 
 ## Attribution
