@@ -99,7 +99,6 @@ theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_fogco")
 
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
