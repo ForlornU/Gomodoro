@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=10 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
 [ext_resource type="Script" path="res://animate_tween.gd" id="6_yl84g"]
-[ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="7_o026c"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 
@@ -27,21 +26,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.172557, 0.224858, 0.285936, 1)
+color = Color(0.215063, 0.276272, 0.347773, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -180.0
-offset_top = -134.0
 offset_right = 180.0
-offset_bottom = -46.0
+offset_bottom = 88.0
 grow_horizontal = 2
-grow_vertical = 2
 text = "Work Timer"
 label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
@@ -53,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = 2.0
-offset_right = -16.0
-offset_bottom = 42.0
+offset_left = -269.0
+offset_top = -83.0
+offset_right = -110.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
@@ -69,10 +64,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = 2.0
-offset_right = 191.0
-offset_bottom = 42.0
+offset_left = 113.0
+offset_top = -75.0
+offset_right = 272.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
@@ -85,10 +80,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -41.0
-offset_top = -135.0
-offset_right = 41.0
-offset_bottom = -90.0
+offset_left = -39.0
+offset_top = -219.0
+offset_right = 43.0
+offset_bottom = -174.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "00:00"
@@ -116,30 +111,12 @@ scale = Vector2(0.11607, 0.11607)
 texture = ExtResource("7_w04hh")
 script = ExtResource("6_yl84g")
 
-[node name="Circle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
-visible = false
-modulate = Color(0.85569, 0.555766, 0.706037, 1)
-texture_filter = 4
-scale = Vector2(0.15, 0.14935)
-texture = ExtResource("7_ae4gr")
-
 [node name="OuterCicle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
-self_modulate = Color(0.642935, 0.443157, 0.685175, 1)
 texture_filter = 4
-scale = Vector2(0.15, 0.14935)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_o026c")
 
-[node name="SettingsButton" type="Button" parent="ColorRect"]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 60.0
-offset_bottom = 60.0
-theme = ExtResource("3_pm7a3")
-icon = ExtResource("4_fogco")
-
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 
-[node name="CheckButton" type="CheckButton" parent="ColorRect/SettingsPanel"]
+[node name="ontop_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -166,6 +143,19 @@ offset_bottom = -15.0
 grow_vertical = 2
 button_pressed = true
 text = "Always on top"
+
+[node name="sound_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.5
+offset_top = 66.0
+offset_right = 214.5
+offset_bottom = 100.0
+grow_vertical = 2
+button_pressed = true
+text = "Sound"
 
 [node name="SpinBox" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
@@ -194,19 +184,43 @@ grow_horizontal = 2
 text = "Time (minutes)"
 label_settings = ExtResource("3_f5d3i")
 
-[node name="PauseButton" type="Button" parent="ColorRect"]
+[node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -74.0
-offset_top = -115.0
-offset_right = -24.0
-offset_bottom = -65.0
-grow_horizontal = 0
-grow_vertical = 2
+anchor_bottom = 1.0
+offset_top = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SettingsButton" type="Button" parent="ColorRect/BottomPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -50.0
+offset_right = -226.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_pm7a3")
+icon = ExtResource("4_fogco")
+
+[node name="PauseButton" type="Button" parent="ColorRect/BottomPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 217.0
+offset_top = -50.0
+offset_right = 267.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("6_ukq03")
 
@@ -216,8 +230,9 @@ icon = ExtResource("6_ukq03")
 
 [connection signal="pressed" from="ColorRect/WorkButton" to="." method="_button_pressed"]
 [connection signal="pressed" from="ColorRect/BreakButton" to="." method="_take_break_button"]
-[connection signal="pressed" from="ColorRect/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="toggled" from="ColorRect/SettingsPanel/CheckButton" to="." method="_always_on_top_toggle"]
+[connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
+[connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
-[connection signal="pressed" from="ColorRect/PauseButton" to="." method="_on_pause"]
+[connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
