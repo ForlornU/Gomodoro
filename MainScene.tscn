@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=7 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://Assets/timer_label.tres" id="3_f5d3i"]
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
+[ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -160,14 +161,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -17.0
-offset_right = -23.0
-offset_bottom = 17.0
+offset_left = -74.0
+offset_top = -25.0
+offset_right = -24.0
+offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
-text = "||"
+icon = ExtResource("6_ukq03")
 
 [node name="Timer" type="Timer" parent="."]
 

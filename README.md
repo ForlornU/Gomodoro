@@ -14,5 +14,5 @@ Created by ForlornU
 Timer icon from:
 <a href="https://www.flaticon.com/free-icons/timer" title="timer icons">Timer icons created by fjstudio - Flaticon</a>
 
-Wrench icon from:
+Game icons from:
 <a href="https://kenney.nl/assets/game-icons" title="Game Icons"> Game icons created by Kenney.nl </a>
