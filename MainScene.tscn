@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=9 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
+[ext_resource type="Script" path="res://animate_tween.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 
 [node name="Control" type="Control"]
@@ -101,6 +102,7 @@ offset_bottom = 40.0
 position = Vector2(26, 8.99999)
 scale = Vector2(0.11607, 0.11607)
 texture = ExtResource("7_w04hh")
+script = ExtResource("6_yl84g")
 
 [node name="SettingsButton" type="Button" parent="ColorRect"]
 layout_mode = 1
