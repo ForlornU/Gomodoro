@@ -11,6 +11,7 @@ var user_selected_timer_value = 1800 #Default 30 minutes
 @onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 #endregion
 
 func _ready() -> void:
@@ -26,7 +27,10 @@ func _process(_delta: float) -> void:
 	var minutes = int(timer.time_left) / 60
 	var seconds = int(timer.time_left) % 60
 	if(!timer.is_stopped()):
-		timer_label.text = str(minutes) + ":" + str(seconds)
+		if(minutes < 1):
+			timer_label.text = str(seconds)
+		else:
+			timer_label.text = str(minutes) + ":" + str(seconds)
 
 func switch_state(state : State):
 	if(current_state == state):
