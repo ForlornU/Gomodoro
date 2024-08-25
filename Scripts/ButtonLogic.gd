@@ -5,6 +5,10 @@ var current_state : State
 var previous_state : State
 var user_selected_timer_value = 1800 #Default 30 minutes
 
+#Preloaded Audio
+const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
+const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
+
 #region references
 @onready var status_label: Label = $ColorRect/MainLabel
 @onready var color_rect: ColorRect = $ColorRect
@@ -42,10 +46,14 @@ func switch_state(state : State):
 		State.WORK:
 			color_rect.color = Color.RED
 			status_label.text = "Working Hard!"
+			audio_stream_player.stream = BACK_TO_WORK
+			audio_stream_player.play()
 		State.BREAK:
 			reset_timer()
 			color_rect.color = Color.FOREST_GREEN
 			status_label.text = "Take a break!"
+			audio_stream_player.stream = TAKE_A_BREAK
+			audio_stream_player.play()
 		State.PAUSED:
 			color_rect.color = Color.YELLOW
 			status_label.text = "Paused!"
