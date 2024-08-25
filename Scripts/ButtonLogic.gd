@@ -17,6 +17,7 @@ const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var circle: Sprite2D = $ColorRect/TimerLabel/Control/OuterCicle
+@onready var texture_progress_bar: TextureProgressBar = $ColorRect/TimerLabel/TextureProgressBar
 #endregion
 
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _process(_delta: float) -> void:
 			timer_label.text = str(seconds)
 		else:
 			timer_label.text = str(minutes) + ":" + str(seconds)
+	texture_progress_bar.value = user_selected_timer_value - timer.time_left
 
 func switch_state(state : State):
 	if(current_state == state):
@@ -46,17 +48,20 @@ func switch_state(state : State):
 	match state:
 		State.WORK:
 			circle.self_modulate = Color.DARK_RED
+			texture_progress_bar.tint_progress = Color.RED
 			status_label.text = "Work!"
 			audio_stream_player.stream = BACK_TO_WORK
 			audio_stream_player.play()
 		State.BREAK:
 			reset_timer()
 			circle.self_modulate = Color.SEA_GREEN
+			texture_progress_bar.tint_progress = Color.SEA_GREEN
 			status_label.text = "Relax"
 			audio_stream_player.stream = TAKE_A_BREAK
 			audio_stream_player.play()
 		State.PAUSED:
 			circle.self_modulate = Color.YELLOW
+			texture_progress_bar.tint_progress = Color.YELLOW
 			status_label.text = "Paused"
 	current_state = state
 
@@ -70,6 +75,7 @@ func resume():
 #Start timer with new time
 func reset_timer():
 	timer.start(user_selected_timer_value)
+	texture_progress_bar.max_value = user_selected_timer_value
 
 #region Buttons
 #After the timer runs out, switch state

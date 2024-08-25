@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=11 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
 [ext_resource type="Script" path="res://animate_tween.gd" id="6_yl84g"]
-[ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="7_o026c"]
+[ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
+[ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -40,6 +41,7 @@ grow_horizontal = 2
 text = "Work Timer"
 label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
+uppercase = true
 
 [node name="WorkButton" type="Button" parent="ColorRect"]
 layout_mode = 1
@@ -106,17 +108,40 @@ grow_vertical = 2
 
 [node name="Timer" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
 texture_filter = 4
-position = Vector2(-110, -5.00001)
+position = Vector2(-133, -5.00001)
 scale = Vector2(0.11607, 0.11607)
 texture = ExtResource("7_w04hh")
 script = ExtResource("6_yl84g")
 
 [node name="OuterCicle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
 texture_filter = 4
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_o026c")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_ae4gr")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ColorRect/TimerLabel"]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.467
+anchor_right = 0.5
+anchor_bottom = 0.467
+offset_left = -140.0
+offset_top = -105.015
+offset_right = 660.0
+offset_bottom = 494.985
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
+step = 0.1
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("7_ae4gr")
+texture_progress = ExtResource("8_6mh3c")
+tint_progress = Color(1, 0.372549, 1, 1)
 
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
