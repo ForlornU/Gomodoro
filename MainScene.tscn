@@ -136,7 +136,7 @@ offset_top = 44.5
 offset_right = 41.0625
 offset_bottom = 75.5
 grow_horizontal = 2
-min_value = 10.0
+min_value = 1.0
 max_value = 180.0
 value = 30.0
 
@@ -170,6 +170,8 @@ theme = ExtResource("3_pm7a3")
 text = "||"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="ColorRect/WorkButton" to="." method="_button_pressed"]
 [connection signal="pressed" from="ColorRect/BreakButton" to="." method="_take_break_button"]
