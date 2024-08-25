@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqjigamq4exo2"
-path="res://.godot/imported/timer.png-569260dc7fc812a11c46d027800e2974.ctex"
+uid="uid://dp88wghydhe2a"
+path="res://.godot/imported/LargeCircle.png-ee36608d6de46f3f3155b68e9698c078.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/timer.png"
-dest_files=["res://.godot/imported/timer.png-569260dc7fc812a11c46d027800e2974.ctex"]
+source_file="res://Assets/LargeCircle.png"
+dest_files=["res://.godot/imported/LargeCircle.png-ee36608d6de46f3f3155b68e9698c078.ctex"]
 
 [params]
 

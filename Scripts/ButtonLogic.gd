@@ -16,6 +16,7 @@ const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var circle: Sprite2D = $ColorRect/TimerLabel/Control/OuterCicle
 #endregion
 
 func _ready() -> void:
@@ -44,19 +45,19 @@ func switch_state(state : State):
 	previous_state = current_state
 	match state:
 		State.WORK:
-			color_rect.color = Color.RED
-			status_label.text = "Working Hard!"
+			circle.self_modulate = Color.DARK_RED
+			status_label.text = "Work!"
 			audio_stream_player.stream = BACK_TO_WORK
 			audio_stream_player.play()
 		State.BREAK:
 			reset_timer()
-			color_rect.color = Color.FOREST_GREEN
-			status_label.text = "Take a break!"
+			circle.self_modulate = Color.SEA_GREEN
+			status_label.text = "Relax"
 			audio_stream_player.stream = TAKE_A_BREAK
 			audio_stream_player.play()
 		State.PAUSED:
-			color_rect.color = Color.YELLOW
-			status_label.text = "Paused!"
+			circle.self_modulate = Color.YELLOW
+			status_label.text = "Paused"
 	current_state = state
 
 #Switching state should always start timer, if not pause
