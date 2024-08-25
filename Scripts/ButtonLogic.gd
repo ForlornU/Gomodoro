@@ -102,13 +102,21 @@ func _on_pause() -> void:
 
 #Start work
 func _button_pressed() -> void:
+	if(current_state == State.WORK):
+		return
 	reset_timer()
 	resume()
 	switch_state(State.WORK)
 
 #Start break
 func _take_break_button() -> void:
+	if(current_state == State.BREAK):
+		return
 	reset_timer()
 	resume()
 	switch_state(State.BREAK)
+	
+func _on_sound_check_toggled(toggled_on: bool) -> void:
+	audio_stream_player.volume_db = 0 if toggled_on else -80
+	
 #endregion
