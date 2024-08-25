@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.215063, 0.276272, 0.347773, 1)
+color = Color(0.22236, 0.271673, 0.35994, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -43,35 +43,51 @@ label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="WorkButton" type="Button" parent="ColorRect"]
+[node name="Line" type="Panel" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -269.0
-offset_top = -83.0
-offset_right = -110.0
-offset_bottom = -43.0
+offset_top = -162.0
+offset_bottom = -159.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StateButtons" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorkButton" type="Button" parent="ColorRect/StateButtons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -147.0
+offset_right = 169.0
+offset_bottom = -107.0
+grow_vertical = 0
 theme = ExtResource("3_pm7a3")
 text = "Start Working"
 
-[node name="BreakButton" type="Button" parent="ColorRect"]
+[node name="BreakButton" type="Button" parent="ColorRect/StateButtons"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 113.0
-offset_top = -75.0
-offset_right = 272.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -147.0
+offset_right = -10.0
+offset_bottom = -107.0
+grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("3_pm7a3")
 text = "Take a break"
 
@@ -83,9 +99,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -39.0
-offset_top = -219.0
+offset_top = -279.0
 offset_right = 43.0
-offset_bottom = -174.0
+offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "00:00"
@@ -105,13 +121,6 @@ offset_right = 39.0
 offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Timer" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
-texture_filter = 4
-position = Vector2(-133, -5.00001)
-scale = Vector2(0.11607, 0.11607)
-texture = ExtResource("7_w04hh")
-script = ExtResource("6_yl84g")
 
 [node name="OuterCicle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
 texture_filter = 4
@@ -249,12 +258,19 @@ grow_vertical = 0
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("6_ukq03")
 
+[node name="Timer" type="Sprite2D" parent="ColorRect/BottomPanel"]
+texture_filter = 4
+position = Vector2(323, 25)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_w04hh")
+script = ExtResource("6_yl84g")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="pressed" from="ColorRect/WorkButton" to="." method="_button_pressed"]
-[connection signal="pressed" from="ColorRect/BreakButton" to="." method="_take_break_button"]
+[connection signal="pressed" from="ColorRect/StateButtons/WorkButton" to="." method="_button_pressed"]
+[connection signal="pressed" from="ColorRect/StateButtons/BreakButton" to="." method="_take_break_button"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
