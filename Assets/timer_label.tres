@@ -1,7 +1,10 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://c7ql4jt5wyol1"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c7ql4jt5wyol1"]
+
+[ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="1_836vi"]
 
 [resource]
-font_size = 28
+font = ExtResource("1_836vi")
+font_size = 36
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.333333)

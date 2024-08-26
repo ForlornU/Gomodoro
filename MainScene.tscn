@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=12 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://Assets/timer_label.tres" id="3_f5d3i"]
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
+[ext_resource type="Texture2D" uid="uid://bvgs2nhhybpwg" path="res://Assets/next.png" id="4_iajiw"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
 [ext_resource type="Script" path="res://animate_tween.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
@@ -16,6 +17,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jejwl")
@@ -27,15 +29,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.22236, 0.271673, 0.35994, 1)
+color = Color(0.267095, 0.356632, 0.358416, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -180.0
-offset_right = 180.0
+offset_left = -197.5
+offset_top = 25.0
+offset_right = 198.5
 offset_bottom = 88.0
 grow_horizontal = 2
 text = "Work Timer"
@@ -56,26 +59,31 @@ grow_vertical = 2
 
 [node name="StateButtons" type="Control" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.998
+anchor_bottom = 0.998
+offset_right = 0.200012
+offset_bottom = 2.996
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WorkButton" type="Button" parent="ColorRect/StateButtons"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -147.0
-offset_right = 169.0
-offset_bottom = -107.0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 111.0
+offset_right = 25.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_pm7a3")
-text = "Start Working"
+icon = ExtResource("4_iajiw")
 
 [node name="BreakButton" type="Button" parent="ColorRect/StateButtons"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -98,10 +106,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = -279.0
-offset_right = 43.0
-offset_bottom = -234.0
+offset_left = -38.5
+offset_top = -297.0
+offset_right = 43.5
+offset_bottom = -252.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "00:00"
@@ -123,6 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OuterCicle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
+visible = false
 texture_filter = 4
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_ae4gr")
@@ -136,14 +145,14 @@ anchor_top = 0.467
 anchor_right = 0.5
 anchor_bottom = 0.467
 offset_left = -140.0
-offset_top = -105.015
+offset_top = -110.015
 offset_right = 660.0
-offset_bottom = 494.985
+offset_bottom = 489.985
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 step = 0.1
-value = 50.0
+value = 68.8
 fill_mode = 4
 texture_under = ExtResource("7_ae4gr")
 texture_progress = ExtResource("8_6mh3c")
@@ -224,7 +233,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -53.0
+offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -235,9 +244,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -276.0
+offset_left = -207.5
 offset_top = -50.0
-offset_right = -226.0
+offset_right = -157.5
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_pm7a3")
@@ -250,9 +259,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 217.0
-offset_top = -50.0
-offset_right = 267.0
+offset_left = 153.5
+offset_top = -48.0
+offset_right = 203.5
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_pm7a3")
@@ -260,7 +270,7 @@ icon = ExtResource("6_ukq03")
 
 [node name="Timer" type="Sprite2D" parent="ColorRect/BottomPanel"]
 texture_filter = 4
-position = Vector2(323, 25)
+position = Vector2(265, 26)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("7_w04hh")
 script = ExtResource("6_yl84g")

@@ -20,8 +20,8 @@ config/icon="res://Assets/timer.png"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=480
+window/size/viewport_width=525
+window/size/viewport_height=500
 window/size/resizable=false
 window/size/always_on_top=true
 

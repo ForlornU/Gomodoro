@@ -1,6 +1,8 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://dllnu5l76xe7o"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dllnu5l76xe7o"]
+
+[ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="1_78c8b"]
 
 [resource]
+font = ExtResource("1_78c8b")
 font_size = 64
-shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.235294)
