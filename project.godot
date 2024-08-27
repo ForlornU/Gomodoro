@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://Assets/timer.png"
 config/icon="res://Assets/timer.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+
 [display]
 
 window/size/viewport_width=525
