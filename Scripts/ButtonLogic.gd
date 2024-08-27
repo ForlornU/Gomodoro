@@ -80,16 +80,23 @@ func _on_timer_timeout() -> void:
 
 func _on_settings_button_pressed() -> void:
 	settings_panel.visible = !settings_panel.visible
+	timer.paused = true
+	switch_state(Global.State.PAUSED, false)
 
 func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
 
+#Changing Work duration
 func _on_timevalue_changed(value: int) -> void:
-	print("New timer set to: " + str(value))
+	print("New work duration set to: " + str(value) + " seconds")
 	var new_time : int = 60*value
-	timer.wait_time = new_time
 	Global.work_time = new_time
-	timer_label.text = str(timer.wait_time)
+	
+#Changing break_duration
+func _on_pausetime_changed(value: int) -> void:
+	print("New break duration set to: " + str(value)+ " seconds")
+	var new_time : int = 60*value
+	Global.short_pause_time = new_time
 
 func _on_pause() -> void:
 	timer.paused = !timer.paused

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=14 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -10,7 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/TweenAnimation.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
+[ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="8_2qp0x"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_olgw3"]
+font = ExtResource("8_2qp0x")
+font_size = 20
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -160,11 +165,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 16.5
-offset_top = -49.0
-offset_right = 214.5
-offset_bottom = -15.0
+offset_left = 18.0
+offset_top = 48.0
+offset_right = 216.0
+offset_bottom = 82.0
 grow_vertical = 2
+theme = ExtResource("3_pm7a3")
 button_pressed = true
 text = "Always on top"
 
@@ -173,40 +179,87 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 16.5
-offset_top = 66.0
-offset_right = 214.5
-offset_bottom = 100.0
+offset_left = 17.0
+offset_top = 130.0
+offset_right = 215.0
+offset_bottom = 164.0
 grow_vertical = 2
+theme = ExtResource("3_pm7a3")
 button_pressed = true
 text = "Sound"
 
-[node name="SpinBox" type="SpinBox" parent="ColorRect/SettingsPanel"]
+[node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -42.0
-offset_top = 44.5
-offset_right = 41.0625
-offset_bottom = 75.5
-grow_horizontal = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -159.0
+offset_right = 0.0625
+offset_bottom = -128.0
+grow_horizontal = 0
+grow_vertical = 2
 min_value = 1.0
 max_value = 180.0
 value = 30.0
+
+[node name="pausetimeselector2" type="SpinBox" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -110.0
+offset_right = 0.0625
+offset_bottom = -79.0
+grow_horizontal = 0
+grow_vertical = 2
+min_value = 1.0
+max_value = 180.0
+value = 5.0
 
 [node name="Label" type="Label" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -87.0
-offset_top = 4.5
-offset_right = 87.0
+offset_left = -63.5
+offset_top = 17.5
+offset_right = 64.5
 offset_bottom = 38.5
 grow_horizontal = 2
 text = "Time (minutes)"
-label_settings = ExtResource("3_f5d3i")
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="work_time" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.5
+offset_top = 56.5
+offset_right = 23.5
+offset_bottom = 77.5
+grow_horizontal = 2
+text = "work: "
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="pause_time" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.5
+offset_top = 102.5
+offset_right = 23.5
+offset_bottom = 123.5
+grow_horizontal = 2
+text = "break:"
+label_settings = SubResource("LabelSettings_olgw3")
 
 [node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
@@ -263,7 +316,8 @@ script = ExtResource("6_yl84g")
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
-[connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="." method="_on_timevalue_changed"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="." method="_on_pausetime_changed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
