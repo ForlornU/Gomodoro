@@ -35,26 +35,26 @@ func _process(_delta: float) -> void:
 			timer_label.text = str(seconds)
 		else:
 			timer_label.text = str(minutes) + ":" + str(seconds)
-	texture_progress_bar.value = Global.work_time - timer.time_left
+	texture_progress_bar.value = Global.work_duration - timer.time_left
 
 func switch_state(new_state : Global.State, from_pause : bool):
 	previous_state = current_state
 	match new_state:
 		Global.State.WORK:
 			if(!from_pause):
-				timer.start(Global.work_time)
+				timer.start(Global.work_duration)
 				audio_stream_player.stream = BACK_TO_WORK
 				audio_stream_player.play()
-			texture_progress_bar.max_value = Global.work_time
+			texture_progress_bar.max_value = Global.work_duration
 			circle.self_modulate = Color.DARK_RED
 			texture_progress_bar.tint_progress = Color.RED
 			status_label.text = "Work!"
 		Global.State.BREAK:
 			if(!from_pause):
-				timer.start(Global.short_pause_time)
+				timer.start(Global.short_pause_duration)
 				audio_stream_player.stream = TAKE_A_BREAK
 				audio_stream_player.play()
-			texture_progress_bar.max_value = Global.short_pause_time
+			texture_progress_bar.max_value = Global.short_pause_duration
 			circle.self_modulate = Color.SEA_GREEN
 			texture_progress_bar.tint_progress = Color.SEA_GREEN
 			status_label.text = "Relax"
@@ -90,13 +90,13 @@ func _always_on_top_toggle(toggled_on: bool) -> void:
 func _on_timevalue_changed(value: int) -> void:
 	print("New work duration set to: " + str(value) + " seconds")
 	var new_time : int = 60*value
-	Global.work_time = new_time
+	Global.work_duration = new_time
 	
 #Changing break_duration
 func _on_pausetime_changed(value: int) -> void:
 	print("New break duration set to: " + str(value)+ " seconds")
 	var new_time : int = 60*value
-	Global.short_pause_time = new_time
+	Global.short_pause_duration = new_time
 
 func _on_pause() -> void:
 	timer.paused = !timer.paused
