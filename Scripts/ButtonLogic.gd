@@ -1,9 +1,14 @@
 extends Control
 
+#State
 enum State {WORK, BREAK, PAUSED}
 var current_state : State
 var previous_state : State
-var user_selected_timer_value = 1800 #Default 30 minutes
+
+#Time
+var work_time = 1800 #Default 30min
+var short_pause_time = 300 # 5min
+var cycles = 4 #How many work/break cycles before complete
 
 #Preloaded Audio
 const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
@@ -11,7 +16,6 @@ const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 
 #region references
 @onready var status_label: Label = $ColorRect/MainLabel
-@onready var color_rect: ColorRect = $ColorRect
 @onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
@@ -37,7 +41,7 @@ func _process(_delta: float) -> void:
 			timer_label.text = str(seconds)
 		else:
 			timer_label.text = str(minutes) + ":" + str(seconds)
-	texture_progress_bar.value = user_selected_timer_value - timer.time_left
+	texture_progress_bar.value = work_time - timer.time_left
 
 func switch_state(state : State):
 	if(current_state == state):
@@ -74,8 +78,8 @@ func resume():
 
 #Start timer with new time
 func reset_timer():
-	timer.start(user_selected_timer_value)
-	texture_progress_bar.max_value = user_selected_timer_value
+	timer.start(work_time)
+	texture_progress_bar.max_value = work_time
 
 #region Buttons
 #After the timer runs out, switch state
@@ -92,11 +96,11 @@ func _on_settings_button_pressed() -> void:
 func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
 
-func _on_timevalue_changed(value: float) -> void:
+func _on_timevalue_changed(value: int) -> void:
 	print("New timer set to: " + str(value))
-	var new_time = 60*value
+	var new_time : int = 60*value
 	timer.wait_time = new_time
-	user_selected_timer_value = new_time
+	work_time = new_time
 	timer_label.text = str(timer.wait_time)
 
 func _on_pause() -> void:
@@ -106,14 +110,6 @@ func _on_pause() -> void:
 	else:
 		switch_state(State.PAUSED)
 
-#Start work
-func _button_pressed() -> void:
-	if(current_state == State.WORK):
-		return
-	reset_timer()
-	resume()
-	switch_state(State.WORK)
-
 #Start break
 func _take_break_button() -> void:
 	if(current_state == State.BREAK):
@@ -121,8 +117,15 @@ func _take_break_button() -> void:
 	reset_timer()
 	resume()
 	switch_state(State.BREAK)
-	
+
 func _on_sound_check_toggled(toggled_on: bool) -> void:
 	audio_stream_player.volume_db = 0 if toggled_on else -80
 	
+func _next_state_pressed() -> void:
+	if(current_state == State.WORK):
+		return
+	reset_timer()
+	resume()
+	switch_state(State.WORK)
+
 #endregion
