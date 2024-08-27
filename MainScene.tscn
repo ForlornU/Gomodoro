@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://bvgs2nhhybpwg" path="res://Assets/next.png" id="4_iajiw"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
-[ext_resource type="Script" path="res://animate_tween.gd" id="6_yl84g"]
+[ext_resource type="Script" path="res://Scripts/animate_tween.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
@@ -29,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.267095, 0.356632, 0.358416, 1)
+color = Color(0.167228, 0.333195, 0.388008, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -66,7 +66,7 @@ offset_bottom = 2.996
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorkButton" type="Button" parent="ColorRect/StateButtons"]
+[node name="NextButton" type="Button" parent="ColorRect/StateButtons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -156,10 +156,8 @@ value = 68.8
 fill_mode = 4
 texture_under = ExtResource("7_ae4gr")
 texture_progress = ExtResource("8_6mh3c")
-tint_progress = Color(1, 0.372549, 1, 1)
 
 [node name="SettingsPanel" type="Panel" parent="ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -279,7 +277,7 @@ script = ExtResource("6_yl84g")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="pressed" from="ColorRect/StateButtons/WorkButton" to="." method="_button_pressed"]
+[connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
 [connection signal="pressed" from="ColorRect/StateButtons/BreakButton" to="." method="_take_break_button"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
