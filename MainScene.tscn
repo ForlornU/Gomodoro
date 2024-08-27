@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://bvgs2nhhybpwg" path="res://Assets/next.png" id="4_iajiw"]
 [ext_resource type="Texture2D" uid="uid://do2wn2dc7f41g" path="res://Assets/stop.png" id="6_ukq03"]
-[ext_resource type="Script" path="res://Scripts/animate_tween.gd" id="6_yl84g"]
+[ext_resource type="Script" path="res://Scripts/TweenAnimation.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
