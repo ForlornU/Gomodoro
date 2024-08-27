@@ -82,23 +82,6 @@ grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_iajiw")
 
-[node name="BreakButton" type="Button" parent="ColorRect/StateButtons"]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -169.0
-offset_top = -147.0
-offset_right = -10.0
-offset_bottom = -107.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("3_pm7a3")
-text = "Take a break"
-
 [node name="TimerLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 7
@@ -278,7 +261,6 @@ script = ExtResource("6_yl84g")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
-[connection signal="pressed" from="ColorRect/StateButtons/BreakButton" to="." method="_take_break_button"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/SpinBox" to="." method="_on_timevalue_changed"]
