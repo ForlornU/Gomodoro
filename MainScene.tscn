@@ -168,9 +168,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 18.0
-offset_top = 52.5
+offset_top = 55.5
 offset_right = 216.0
-offset_bottom = 86.5
+offset_bottom = 89.5
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 button_pressed = true
@@ -244,9 +244,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -72.5
-offset_top = 150.0
+offset_top = 137.0
 offset_right = 74.5
-offset_bottom = 171.0
+offset_bottom = 158.0
 grow_horizontal = 2
 text = "Transition Sound"
 label_settings = SubResource("LabelSettings_olgw3")
@@ -301,14 +301,31 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -102.5
-offset_top = -36.5
+offset_top = -49.5
 offset_right = 97.5
-offset_bottom = 25.5
+offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
 item_count = 2
 item_0/text = "Soft"
 item_1/text = "Harsh"
+
+[node name="ItemList2" type="ItemList" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 101.5
+offset_top = -48.5
+offset_right = 301.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 2
+item_0/text = "Default"
+item_1/text = "Randomq"
 
 [node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
@@ -393,6 +410,7 @@ color = Color(0.415686, 0.352941, 0.803922, 1)
 [connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="." method="_on_pausetime_changed"]
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
+[connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
