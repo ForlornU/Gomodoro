@@ -3,6 +3,7 @@ extends Control
 #State
 var current_state : Global.State
 var previous_state : Global.State
+var current_max_time : int
 
 #Preloaded Audio
 const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
@@ -27,6 +28,7 @@ func _ready() -> void:
 	settings_panel.visible = false
 	timer_label.text = "30:00"
 	timer.wait_time = 1800
+	current_max_time = timer.wait_time
 
 #Update time label every frame
 func _process(_delta: float) -> void:
@@ -38,7 +40,7 @@ func _process(_delta: float) -> void:
 			timer_label.text = str(seconds)
 		else:
 			timer_label.text = str(minutes) + ":" + str(seconds)
-	texture_progress_bar.value = Global.work_duration - timer.time_left
+	texture_progress_bar.value = current_max_time - timer.time_left
 
 func switch_state(new_state : Global.State, from_pause : bool):
 	previous_state = current_state
@@ -49,6 +51,7 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.stream = BACK_TO_WORK
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
+			current_max_time = Global.work_duration
 			circle.self_modulate = DARK_RED
 			texture_progress_bar.tint_progress = Color.RED
 			status_label.text = "Work!"
@@ -58,6 +61,7 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.stream = TAKE_A_BREAK
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
+			current_max_time = Global.short_pause_duration
 			circle.self_modulate = SEA_GREEN
 			texture_progress_bar.tint_progress = SEA_GREEN
 			status_label.text = "Relax"
