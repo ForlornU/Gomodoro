@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c5ly7bkm4fbg3"]
 
-[ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
+[ext_resource type="Script" path="res://Scripts/MainLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://Assets/timer_label.tres" id="3_f5d3i"]
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]

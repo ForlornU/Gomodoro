@@ -1,4 +1,5 @@
 extends Control
+class_name MainLogic
 
 #State
 var current_state : Global.State
@@ -51,8 +52,7 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 		Global.State.WORK:
 			if(!from_pause):
 				timer.start(Global.work_duration)
-				audio_stream_player.stream = current_audio_profile.work_transition_audio
-				audio_stream_player.play()
+				play_audio(current_audio_profile.work_transition_audio)
 			texture_progress_bar.max_value = Global.work_duration
 			current_max_time = Global.work_duration
 			texture_progress_bar.tint_progress = current_color_profile.focus_color
@@ -62,8 +62,7 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
-				audio_stream_player.stream = current_audio_profile.break_transition_audio
-				audio_stream_player.play()
+				play_audio(current_audio_profile.break_transition_audio)
 			texture_progress_bar.max_value = Global.short_pause_duration
 			current_max_time = Global.short_pause_duration
 			texture_progress_bar.tint_progress = current_color_profile.break_color
@@ -87,6 +86,10 @@ func tween_bg_color(color : Color):
 #Switching state should always start timer, if not pause
 func resume():
 	timer.paused = false
+	
+func play_audio(stream):
+	audio_stream_player.stream = stream
+	audio_stream_player.play()
 
 #region Buttons
 #After the timer runs out, switch state
@@ -133,8 +136,7 @@ func _on_pausetime_changed(value: int) -> void:
 
 func _on_pause() -> void:
 	timer.paused = !timer.paused
-	audio_stream_player.stream = current_audio_profile.pause_audio
-	audio_stream_player.play()
+	play_audio(current_audio_profile.pause_audio)
 	
 	if(timer.paused == false):
 		switch_state(previous_state, true)
@@ -164,7 +166,7 @@ func _on_audio_selected(index: int) -> void:
 		0: 	
 			current_audio_profile = Global.soft_audio_profile
 		1:
-			current_audio_profile = Global.soft_audio_profile
+			current_audio_profile = Global.harsh_audio_profile
 
 func _on_theme_select(index: int) -> void:
 	match index:
