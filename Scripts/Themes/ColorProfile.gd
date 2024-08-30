@@ -1,5 +1,5 @@
 extends Node
-class_name ColorTheme
+class_name ColorProfile
 
 var background_color : Color
 var focus_color : Color

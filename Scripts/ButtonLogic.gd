@@ -6,7 +6,7 @@ var previous_state : Global.State
 var current_max_time : int
 var transition_sound_work = Global.SOFT_STATECHANGE
 var transition_sound_break = Global.SOFT_STATECHANGE
-var current_theme : ColorTheme
+var current_theme : ColorProfile
 
 #region references
 @onready var color_rect: ColorRect = $ColorRect
