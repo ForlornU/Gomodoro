@@ -64,7 +64,6 @@ func switch_state(new_state : Global.State, from_pause : bool):
 		Global.State.PAUSED:
 			texture_progress_bar.tint_progress = YELLOW
 			status_label.text = "Paused"
-			
 	current_state = new_state
 
 #Switching state should always start timer, if not pause
@@ -130,7 +129,6 @@ func _next_state_pressed() -> void:
 	if(timer.is_stopped()): #First time running
 		switch_state(Global.State.WORK, false)
 		return
-		
 	if(current_state == Global.State.WORK):
 		switch_state(Global.State.BREAK, false)
 	elif(current_state == Global.State.BREAK):
