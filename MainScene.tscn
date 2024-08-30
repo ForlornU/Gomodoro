@@ -147,186 +147,6 @@ fill_mode = 4
 texture_under = ExtResource("7_ae4gr")
 texture_progress = ExtResource("8_6mh3c")
 
-[node name="SettingsPanel" type="Panel" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -117.5
-offset_top = -701.0
-offset_right = 117.5
-offset_bottom = -280.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_pm7a3")
-
-[node name="ontop_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 18.0
-offset_top = 55.5
-offset_right = 216.0
-offset_bottom = 89.5
-grow_vertical = 2
-theme = ExtResource("3_pm7a3")
-button_pressed = true
-text = "Always on top"
-
-[node name="sound_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 17.0
-offset_top = 112.5
-offset_right = 215.0
-offset_bottom = 162.5
-grow_vertical = 2
-theme = ExtResource("3_pm7a3")
-button_pressed = true
-text = "Audio"
-icon = ExtResource("8_mfab3")
-
-[node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -159.0
-offset_right = 0.0625
-offset_bottom = -128.0
-grow_horizontal = 0
-grow_vertical = 2
-min_value = 1.0
-max_value = 180.0
-value = 30.0
-
-[node name="pausetimeselector2" type="SpinBox" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -110.0
-offset_right = 0.0625
-offset_bottom = -79.0
-grow_horizontal = 0
-grow_vertical = 2
-min_value = 1.0
-max_value = 180.0
-value = 5.0
-
-[node name="Time_Label" type="Label" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.5
-offset_top = 17.5
-offset_right = 64.5
-offset_bottom = 38.5
-grow_horizontal = 2
-text = "Time (minutes)"
-label_settings = SubResource("LabelSettings_olgw3")
-
-[node name="SoundLabel" type="Label" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -72.5
-offset_top = 137.0
-offset_right = 74.5
-offset_bottom = 158.0
-grow_horizontal = 2
-text = "Transition Sound"
-label_settings = SubResource("LabelSettings_olgw3")
-
-[node name="work_time" type="Label" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -104.5
-offset_top = 56.5
-offset_right = 23.5
-offset_bottom = 77.5
-grow_horizontal = 2
-text = "work: "
-label_settings = SubResource("LabelSettings_olgw3")
-
-[node name="pause_time" type="Label" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -104.5
-offset_top = 102.5
-offset_right = 23.5
-offset_bottom = 123.5
-grow_horizontal = 2
-text = "break:"
-label_settings = SubResource("LabelSettings_olgw3")
-
-[node name="CloseButton" type="Button" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = -33.0
-offset_right = 14.0
-offset_bottom = 17.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-icon = ExtResource("9_i5yx8")
-
-[node name="ItemList" type="ItemList" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.5
-offset_top = -49.5
-offset_right = 97.5
-offset_bottom = 12.5
-grow_horizontal = 2
-grow_vertical = 2
-item_count = 2
-item_0/text = "Soft"
-item_1/text = "Harsh"
-
-[node name="ItemList2" type="ItemList" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 101.5
-offset_top = -48.5
-offset_right = 301.5
-offset_bottom = 13.5
-grow_horizontal = 2
-grow_vertical = 2
-item_count = 2
-item_0/text = "Default"
-item_1/text = "Randomq"
-
 [node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 12
@@ -375,6 +195,202 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("7_w04hh")
 script = ExtResource("6_yl84g")
 
+[node name="SettingsPanel" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.5
+offset_top = -939.0
+offset_right = 200.5
+offset_bottom = -534.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_pm7a3")
+
+[node name="ontop_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = 55.5
+offset_right = 205.0
+offset_bottom = 89.5
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+button_pressed = true
+text = "Always on top"
+
+[node name="sound_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = 112.5
+offset_right = 206.0
+offset_bottom = 162.5
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+button_pressed = true
+text = "Audio"
+icon = ExtResource("8_mfab3")
+
+[node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -167.5
+offset_right = -46.9375
+offset_bottom = -136.5
+grow_horizontal = 0
+grow_vertical = 2
+min_value = 1.0
+max_value = 180.0
+value = 30.0
+
+[node name="pausetimeselector2" type="SpinBox" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.5
+offset_top = -132.0
+offset_right = -47.4375
+offset_bottom = -101.0
+grow_horizontal = 0
+grow_vertical = 2
+min_value = 1.0
+max_value = 180.0
+value = 5.0
+
+[node name="Time_Label" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 17.5
+offset_right = 64.5
+offset_bottom = 38.5
+grow_horizontal = 2
+text = "Time (minutes)"
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="SoundLabel" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.0
+offset_top = 137.0
+offset_right = -31.0
+offset_bottom = 158.0
+grow_horizontal = 2
+text = "Sound Profile "
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="SoundLabel2" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 37.0
+offset_top = 138.0
+offset_right = 184.0
+offset_bottom = 159.0
+grow_horizontal = 2
+text = "Theme"
+label_settings = SubResource("LabelSettings_olgw3")
+horizontal_alignment = 2
+
+[node name="work_time" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.5
+offset_top = 48.0
+offset_right = -23.5
+offset_bottom = 69.0
+grow_horizontal = 2
+text = "work: "
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="pause_time" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 80.5
+offset_right = -24.0
+offset_bottom = 101.5
+grow_horizontal = 2
+text = "break:"
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="CloseButton" type="Button" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -33.0
+offset_right = 14.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("9_i5yx8")
+
+[node name="ItemList" type="ItemList" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -47.5
+offset_right = -96.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 2
+item_0/text = "Soft"
+item_1/text = "Harsh"
+
+[node name="ItemList2" type="ItemList" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -43.5
+offset_right = 178.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_pm7a3")
+item_count = 3
+item_0/text = "Default"
+item_1/text = "Randomq"
+item_2/text = "Color Blind"
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -404,6 +420,8 @@ offset_bottom = 447.0
 color = Color(0.415686, 0.352941, 0.803922, 1)
 
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
+[connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="." method="_on_timevalue_changed"]
@@ -411,6 +429,4 @@ color = Color(0.415686, 0.352941, 0.803922, 1)
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]
-[connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

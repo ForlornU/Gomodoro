@@ -32,6 +32,7 @@ func _ready() -> void:
 	timer_label.text = "--:--"
 	timer.wait_time = 1800
 	current_max_time = timer.wait_time
+	settings_panel.position = Vector2(145,-450)
 
 #Update time label every frame
 func _process(_delta: float) -> void:
@@ -107,12 +108,12 @@ func _on_settings_button_pressed() -> void:
 		settings_panel.visible = true
 		timer.paused = true
 		switch_state(Global.State.PAUSED, false)
-		slide_tween.tween_property(settings_panel, "position", Vector2(145,0), 0.8)
+		slide_tween.tween_property(settings_panel, "position", Vector2(62.5, 93), 0.8)
 	#If closing menu, resume, tween and set visible = false
 	if(next_state == false):
 		resume()
 		switch_state(previous_state, true)
-		slide_tween.tween_property(settings_panel, "position", Vector2(145,-450), 0.8)
+		slide_tween.tween_property(settings_panel, "position", Vector2(63,-450), 0.8)
 		await slide_tween.finished
 		settings_panel.visible = false
 		
@@ -169,5 +170,7 @@ func _on_theme_select(index: int) -> void:
 			current_theme = Global.green_theme
 		1:
 			current_theme = Global.dark_theme
+		2:
+			current_theme = Global.color_blind_dark_theme
 	color_rect.color = current_theme.background_color
 #endregion
