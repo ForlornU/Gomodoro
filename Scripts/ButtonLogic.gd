@@ -31,7 +31,7 @@ func _ready() -> void:
 	settings_panel.visible = false
 	timer_label.text = "--:--"
 	timer.wait_time = 1800
-	current_max_time = timer.wait_time
+	current_max_time = int(timer.wait_time)
 	settings_panel.position = Vector2(145,-450)
 
 #Update time label every frame
@@ -46,8 +46,9 @@ func _process(_delta: float) -> void:
 			timer_label.text = str(minutes) + ":" + str(seconds)
 	texture_progress_bar.value = current_max_time - timer.time_left
 
-func switch_state(new_state : Global.State, from_pause : bool):
-	previous_state = current_state
+func switch_state(new_state : Global.State, from_pause : bool) -> void:
+	if(current_state != new_state):
+		previous_state = current_state
 	match new_state:
 		Global.State.WORK:
 			if(!from_pause):
@@ -76,13 +77,11 @@ func switch_state(new_state : Global.State, from_pause : bool):
 	current_state = new_state
 	
 func tween_bg_color(color : Color):
-	print(color)
 	var color_tween = create_tween()
 	color_tween.set_trans(Tween.TRANS_QUAD)
 	color_tween.set_ease(Tween.EASE_IN_OUT)
 	color_tween.tween_property(color_fade, "self_modulate", color, 0.5)
 	await color_tween.finished
-	print(color_fade.self_modulate)
 
 #Switching state should always start timer, if not pause
 func resume():
