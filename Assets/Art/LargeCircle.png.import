@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp5r22spjv14f"
-path="res://.godot/imported/wrench.png-c0deecf7c1a562888afac67c8c1dc1af.ctex"
+uid="uid://dp88wghydhe2a"
+path="res://.godot/imported/LargeCircle.png-ef0a0b9c46bfc60abd46c20c1c02de36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/wrench.png"
-dest_files=["res://.godot/imported/wrench.png-c0deecf7c1a562888afac67c8c1dc1af.ctex"]
+source_file="res://Assets/Art/LargeCircle.png"
+dest_files=["res://.godot/imported/LargeCircle.png-ef0a0b9c46bfc60abd46c20c1c02de36.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

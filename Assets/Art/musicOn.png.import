@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhusy5xk81u0s"
-path="res://.godot/imported/SmallCircle.png-7e2b11dcc3383b94f3944f97aa6d8ab2.ctex"
+uid="uid://c7nuh8estnue"
+path="res://.godot/imported/musicOn.png-7b54e09d0099f86fe674800755ec80cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SmallCircle.png"
-dest_files=["res://.godot/imported/SmallCircle.png-7e2b11dcc3383b94f3944f97aa6d8ab2.ctex"]
+source_file="res://Assets/Art/musicOn.png"
+dest_files=["res://.godot/imported/musicOn.png-7b54e09d0099f86fe674800755ec80cb.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

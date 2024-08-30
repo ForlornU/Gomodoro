@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvgs2nhhybpwg"
-path="res://.godot/imported/next.png-19917e66ab9734562f1e8a0d31fe3659.ctex"
+uid="uid://bqjigamq4exo2"
+path="res://.godot/imported/timer.png-dda4438840a385c04027d3dd44d5be5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/next.png"
-dest_files=["res://.godot/imported/next.png-19917e66ab9734562f1e8a0d31fe3659.ctex"]
+source_file="res://Assets/Art/timer.png"
+dest_files=["res://.godot/imported/timer.png-dda4438840a385c04027d3dd44d5be5f.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

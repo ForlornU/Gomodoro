@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgpuj3terhhhn"
-path="res://.godot/imported/fade.png-b38429d9b4e43d8096022506ac8973e9.ctex"
+uid="uid://bp5r22spjv14f"
+path="res://.godot/imported/wrench.png-c8f80e1d2209ee3d70bf7e94898fca70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/fade.png"
-dest_files=["res://.godot/imported/fade.png-b38429d9b4e43d8096022506ac8973e9.ctex"]
+source_file="res://Assets/Art/wrench.png"
+dest_files=["res://.godot/imported/wrench.png-c8f80e1d2209ee3d70bf7e94898fca70.ctex"]
 
 [params]
 
