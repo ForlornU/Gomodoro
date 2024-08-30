@@ -7,10 +7,6 @@ var current_max_time : int
 var transition_sound_work = Global.SOFT_STATECHANGE
 var transition_sound_break = Global.SOFT_STATECHANGE
 var current_theme : ColorTheme
-#Constants
-#const FOCUS_COLOR : Color = Color(0xFF7F50FF)
-#const BREAK_COLOR : Color = Color(0x6A5ACDFF)
-#const PAUSE_COLOR : Color = Color(0xFFD700FF)
 
 #region references
 @onready var color_rect: ColorRect = $ColorRect
@@ -47,8 +43,10 @@ func _process(_delta: float) -> void:
 	texture_progress_bar.value = current_max_time - timer.time_left
 
 func switch_state(new_state : Global.State, from_pause : bool) -> void:
-	if(current_state != new_state):
-		previous_state = current_state
+	if(current_state == new_state && timer.is_stopped() == false):
+		return
+	previous_state = current_state
+	
 	match new_state:
 		Global.State.WORK:
 			if(!from_pause):
@@ -60,6 +58,7 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 			texture_progress_bar.tint_progress = current_theme.focus_color
 			status_label.text = "Work!"
 			tween_bg_color(current_theme.focus_color)
+			
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
@@ -70,10 +69,12 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 			texture_progress_bar.tint_progress = current_theme.break_color
 			status_label.text = "Relax"
 			tween_bg_color(current_theme.break_color)
+			
 		Global.State.PAUSED:
 			texture_progress_bar.tint_progress = current_theme.pause_color
 			status_label.text = "Paused"
 			tween_bg_color(current_theme.pause_color)
+			
 	current_state = new_state
 	
 func tween_bg_color(color : Color):
@@ -85,8 +86,7 @@ func tween_bg_color(color : Color):
 
 #Switching state should always start timer, if not pause
 func resume():
-	if(timer.paused == true):
-		timer.paused = false
+	timer.paused = false
 
 #region Buttons
 #After the timer runs out, switch state
@@ -142,14 +142,16 @@ func _on_sound_check_toggled(toggled_on: bool) -> void:
 	audio_stream_player.volume_db = 0 if toggled_on else -80
 	
 func _next_state_pressed() -> void:
-	resume()
 	if(timer.is_stopped()): #First time running
 		switch_state(Global.State.WORK, false)
 		return
+	resume()
 	if(current_state == Global.State.WORK):
 		switch_state(Global.State.BREAK, false)
 	elif(current_state == Global.State.BREAK):
 		switch_state(Global.State.WORK, false)
+	elif(current_state == Global.State.PAUSED):
+		switch_state(previous_state, true)
 
 func _on_close_button_pressed() -> void:
 	_on_settings_button_pressed()
