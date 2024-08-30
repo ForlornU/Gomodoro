@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=16 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 [ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="8_2qp0x"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
+[ext_resource type="Texture2D" uid="uid://c7nuh8estnue" path="res://Assets/musicOn.png" id="8_mfab3"]
 [ext_resource type="Texture2D" uid="uid://dilvqkbvivv03" path="res://Assets/cross.png" id="9_i5yx8"]
 [ext_resource type="Texture2D" uid="uid://dmoel28sa1yp6" path="res://Assets/pause.png" id="11_xoo8n"]
 
@@ -175,13 +176,14 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 17.0
-offset_top = 117.5
+offset_top = 112.5
 offset_right = 215.0
-offset_bottom = 151.5
+offset_bottom = 162.5
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 button_pressed = true
-text = "Sound"
+text = "Audio"
+icon = ExtResource("8_mfab3")
 
 [node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
@@ -217,7 +219,7 @@ min_value = 1.0
 max_value = 180.0
 value = 5.0
 
-[node name="Label" type="Label" parent="ColorRect/SettingsPanel"]
+[node name="Time_Label" type="Label" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -228,6 +230,19 @@ offset_right = 64.5
 offset_bottom = 38.5
 grow_horizontal = 2
 text = "Time (minutes)"
+label_settings = SubResource("LabelSettings_olgw3")
+
+[node name="SoundLabel" type="Label" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 138.0
+offset_right = 64.5
+offset_bottom = 159.0
+grow_horizontal = 2
+text = "Transition Sound"
 label_settings = SubResource("LabelSettings_olgw3")
 
 [node name="work_time" type="Label" parent="ColorRect/SettingsPanel"]
@@ -271,6 +286,20 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 icon = ExtResource("9_i5yx8")
+
+[node name="ItemList" type="ItemList" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -51.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 2
+item_0/text = "Soft"
+item_1/text = "Harsh"
 
 [node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
@@ -330,6 +359,7 @@ script = ExtResource("6_yl84g")
 [connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="." method="_on_timevalue_changed"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="." method="_on_pausetime_changed"]
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

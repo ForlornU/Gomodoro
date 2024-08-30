@@ -4,9 +4,9 @@ extends Control
 var current_state : Global.State
 var previous_state : Global.State
 var current_max_time : int
+var transition_sound_work = Global.SOFT_STATECHANGE
+var transition_sound_break = Global.SOFT_STATECHANGE
 #Constants
-const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
-const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 const DARK_RED : Color = Color(0x8B0000FF)
 const SEA_GREEN : Color = Color(0x2E8B57FF)
 const YELLOW : Color = Color(0xFFFF00FF)
@@ -46,7 +46,7 @@ func switch_state(new_state : Global.State, from_pause : bool):
 		Global.State.WORK:
 			if(!from_pause):
 				timer.start(Global.work_duration)
-				audio_stream_player.stream = BACK_TO_WORK
+				audio_stream_player.stream = transition_sound_work
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
 			current_max_time = Global.work_duration
@@ -55,7 +55,7 @@ func switch_state(new_state : Global.State, from_pause : bool):
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
-				audio_stream_player.stream = TAKE_A_BREAK
+				audio_stream_player.stream = transition_sound_break
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
 			current_max_time = Global.short_pause_duration
@@ -136,4 +136,14 @@ func _next_state_pressed() -> void:
 
 func _on_close_button_pressed() -> void:
 	_on_settings_button_pressed()
+	
+func _on_audio_selected(index: int) -> void:
+	match index:
+		0: 	
+			transition_sound_work = Global.SOFT_STATECHANGE
+			transition_sound_break = Global.SOFT_STATECHANGE
+		1:
+			transition_sound_work = Global.BACK_TO_WORK
+			transition_sound_break = Global.TAKE_A_BREAK
+	
 #endregion
