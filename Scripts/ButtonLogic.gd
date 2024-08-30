@@ -79,10 +79,25 @@ func _on_timer_timeout() -> void:
 		switch_state(Global.State.WORK, false)
 
 func _on_settings_button_pressed() -> void:
-	settings_panel.visible = !settings_panel.visible
-	timer.paused = true
-	switch_state(Global.State.PAUSED, false)
-
+	var next_state = !settings_panel.visible # next state is opposite of current visible state
+	#Create Tween
+	var slide_tween = create_tween()
+	slide_tween.set_trans(Tween.TRANS_BACK)
+	slide_tween.set_ease(Tween.EASE_IN_OUT)
+	#If opening menu, pause and tween
+	if(next_state == true):
+		settings_panel.visible = true
+		timer.paused = true
+		switch_state(Global.State.PAUSED, false)
+		slide_tween.tween_property(settings_panel, "position", Vector2(145,0), 0.8)
+	#If closing menu, resume, tween and set visible = false
+	if(next_state == false):
+		resume()
+		switch_state(previous_state, true)
+		slide_tween.tween_property(settings_panel, "position", Vector2(145,-450), 0.8)
+		await slide_tween.finished
+		settings_panel.visible = false
+		
 func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
 
