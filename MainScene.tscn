@@ -119,12 +119,6 @@ offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OuterCicle" type="Sprite2D" parent="ColorRect/TimerLabel/Control"]
-visible = false
-texture_filter = 4
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("7_ae4gr")
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="ColorRect/TimerLabel"]
 texture_filter = 4
 layout_mode = 1

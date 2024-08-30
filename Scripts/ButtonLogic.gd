@@ -4,8 +4,7 @@ extends Control
 var current_state : Global.State
 var previous_state : Global.State
 var current_max_time : int
-
-#Preloaded Audio
+#Constants
 const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
 const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 const DARK_RED : Color = Color(0x8B0000FF)
@@ -18,15 +17,14 @@ const YELLOW : Color = Color(0xFFFF00FF)
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var circle: Sprite2D = $ColorRect/TimerLabel/Control/OuterCicle
 @onready var texture_progress_bar: TextureProgressBar = $ColorRect/TimerLabel/TextureProgressBar
 #endregion
-
+#Set defaults
 func _ready() -> void:
 	current_state = Global.State.WORK
 	get_window().always_on_top = true
 	settings_panel.visible = false
-	timer_label.text = "30:00"
+	timer_label.text = "--:--"
 	timer.wait_time = 1800
 	current_max_time = timer.wait_time
 
@@ -52,7 +50,6 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
 			current_max_time = Global.work_duration
-			circle.self_modulate = DARK_RED
 			texture_progress_bar.tint_progress = Color.RED
 			status_label.text = "Work!"
 		Global.State.BREAK:
@@ -62,11 +59,9 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
 			current_max_time = Global.short_pause_duration
-			circle.self_modulate = SEA_GREEN
 			texture_progress_bar.tint_progress = SEA_GREEN
 			status_label.text = "Relax"
 		Global.State.PAUSED:
-			circle.self_modulate = YELLOW
 			texture_progress_bar.tint_progress = YELLOW
 			status_label.text = "Paused"
 			
