@@ -262,13 +262,6 @@ grow_horizontal = 2
 text = "break:"
 label_settings = SubResource("LabelSettings_olgw3")
 
-[node name="ColorPicker" type="ColorPicker" parent="ColorRect/SettingsPanel"]
-layout_mode = 0
-offset_left = -487.0
-offset_top = 473.0
-offset_right = -189.0
-offset_bottom = 1061.0
-
 [node name="CloseButton" type="Button" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 3

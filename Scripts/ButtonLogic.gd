@@ -7,6 +7,9 @@ var previous_state : Global.State
 #Preloaded Audio
 const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
 const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
+const DARK_RED : Color = Color(0x8B0000FF)
+const SEA_GREEN : Color = Color(0x2E8B57FF)
+const YELLOW : Color = Color(0xFFFF00FF)
 
 #region references
 @onready var status_label: Label = $ColorRect/MainLabel
@@ -46,7 +49,7 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.stream = BACK_TO_WORK
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
-			circle.self_modulate = Color.DARK_RED
+			circle.self_modulate = DARK_RED
 			texture_progress_bar.tint_progress = Color.RED
 			status_label.text = "Work!"
 		Global.State.BREAK:
@@ -55,12 +58,12 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.stream = TAKE_A_BREAK
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
-			circle.self_modulate = Color.SEA_GREEN
-			texture_progress_bar.tint_progress = Color.SEA_GREEN
+			circle.self_modulate = SEA_GREEN
+			texture_progress_bar.tint_progress = SEA_GREEN
 			status_label.text = "Relax"
 		Global.State.PAUSED:
-			circle.self_modulate = Color.YELLOW
-			texture_progress_bar.tint_progress = Color.YELLOW
+			circle.self_modulate = YELLOW
+			texture_progress_bar.tint_progress = YELLOW
 			status_label.text = "Paused"
 			
 	current_state = new_state
