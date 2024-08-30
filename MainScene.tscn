@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=15 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
 [ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="8_2qp0x"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/LargeCircle.png" id="8_6mh3c"]
+[ext_resource type="Texture2D" uid="uid://dilvqkbvivv03" path="res://Assets/cross.png" id="9_i5yx8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_olgw3"]
 font = ExtResource("8_2qp0x")
@@ -34,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.167228, 0.333195, 0.388008, 1)
+color = Color(0.435867, 0.590756, 0.461862, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -261,6 +262,29 @@ grow_horizontal = 2
 text = "break:"
 label_settings = SubResource("LabelSettings_olgw3")
 
+[node name="ColorPicker" type="ColorPicker" parent="ColorRect/SettingsPanel"]
+layout_mode = 0
+offset_left = -487.0
+offset_top = 473.0
+offset_right = -189.0
+offset_bottom = 1061.0
+
+[node name="CloseButton" type="Button" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -27.0
+offset_right = 22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("9_i5yx8")
+
 [node name="BottomPanel" type="Panel" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 12
@@ -318,6 +342,7 @@ script = ExtResource("6_yl84g")
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="." method="_on_timevalue_changed"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="." method="_on_pausetime_changed"]
+[connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

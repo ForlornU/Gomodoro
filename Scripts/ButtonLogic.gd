@@ -134,4 +134,6 @@ func _next_state_pressed() -> void:
 	elif(current_state == Global.State.BREAK):
 		switch_state(Global.State.WORK, false)
 
+func _on_close_button_pressed() -> void:
+	_on_settings_button_pressed()
 #endregion
