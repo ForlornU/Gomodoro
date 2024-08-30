@@ -4,9 +4,8 @@ extends Control
 var current_state : Global.State
 var previous_state : Global.State
 var current_max_time : int
-var transition_sound_work = Global.SOFT_STATECHANGE
-var transition_sound_break = Global.SOFT_STATECHANGE
-var current_theme : ColorProfile
+var current_color_profile : ColorProfile
+var current_audio_profile : AudioProfile
 
 #region references
 @onready var color_rect: ColorRect = $ColorRect
@@ -23,6 +22,7 @@ var current_theme : ColorProfile
 func _ready() -> void:
 	current_state = Global.State.WORK
 	_on_theme_select(0) # set default theme
+	_on_audio_selected(0)
 	get_window().always_on_top = true
 	settings_panel.visible = false
 	timer_label.text = "--:--"
@@ -51,29 +51,29 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 		Global.State.WORK:
 			if(!from_pause):
 				timer.start(Global.work_duration)
-				audio_stream_player.stream = transition_sound_work
+				audio_stream_player.stream = current_audio_profile.work_transition_audio
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
 			current_max_time = Global.work_duration
-			texture_progress_bar.tint_progress = current_theme.focus_color
+			texture_progress_bar.tint_progress = current_color_profile.focus_color
 			status_label.text = "Work!"
-			tween_bg_color(current_theme.focus_color)
+			tween_bg_color(current_color_profile.focus_color)
 			
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
-				audio_stream_player.stream = transition_sound_break
+				audio_stream_player.stream = current_audio_profile.break_transition_audio
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
 			current_max_time = Global.short_pause_duration
-			texture_progress_bar.tint_progress = current_theme.break_color
+			texture_progress_bar.tint_progress = current_color_profile.break_color
 			status_label.text = "Relax"
-			tween_bg_color(current_theme.break_color)
+			tween_bg_color(current_color_profile.break_color)
 			
 		Global.State.PAUSED:
-			texture_progress_bar.tint_progress = current_theme.pause_color
+			texture_progress_bar.tint_progress = current_color_profile.pause_color
 			status_label.text = "Paused"
-			tween_bg_color(current_theme.pause_color)
+			tween_bg_color(current_color_profile.pause_color)
 			
 	current_state = new_state
 	
@@ -133,6 +133,9 @@ func _on_pausetime_changed(value: int) -> void:
 
 func _on_pause() -> void:
 	timer.paused = !timer.paused
+	audio_stream_player.stream = current_audio_profile.pause_audio
+	audio_stream_player.play()
+	
 	if(timer.paused == false):
 		switch_state(previous_state, true)
 	else:
@@ -159,19 +162,17 @@ func _on_close_button_pressed() -> void:
 func _on_audio_selected(index: int) -> void:
 	match index:
 		0: 	
-			transition_sound_work = Global.SOFT_STATECHANGE
-			transition_sound_break = Global.SOFT_STATECHANGE
+			current_audio_profile = Global.soft_audio_profile
 		1:
-			transition_sound_work = Global.BACK_TO_WORK
-			transition_sound_break = Global.TAKE_A_BREAK
+			current_audio_profile = Global.soft_audio_profile
 
 func _on_theme_select(index: int) -> void:
 	match index:
 		0:
-			current_theme = Global.green_theme
+			current_color_profile = Global.green_theme
 		1:
-			current_theme = Global.dark_theme
+			current_color_profile = Global.dark_theme
 		2:
-			current_theme = Global.color_blind_dark_theme
-	color_rect.color = current_theme.background_color
+			current_color_profile = Global.color_blind_dark_theme
+	color_rect.color = current_color_profile.background_color
 #endregion
