@@ -7,9 +7,9 @@ var current_max_time : int
 var transition_sound_work = Global.SOFT_STATECHANGE
 var transition_sound_break = Global.SOFT_STATECHANGE
 #Constants
-const DARK_RED : Color = Color(0x8B0000FF)
-const SEA_GREEN : Color = Color(0x2E8B57FF)
-const YELLOW : Color = Color(0xFFFF00FF)
+const FOCUS_COLOR : Color = Color(0xFF7F50FF)
+const BREAK_COLOR : Color = Color(0x6A5ACDFF)
+const PAUSE_COLOR : Color = Color(0xFFD700FF)
 
 #region references
 @onready var status_label: Label = $ColorRect/MainLabel
@@ -18,7 +18,9 @@ const YELLOW : Color = Color(0xFFFF00FF)
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var texture_progress_bar: TextureProgressBar = $ColorRect/TimerLabel/TextureProgressBar
+@onready var color_fade: Sprite2D = $ColorRect/ColorFade
 #endregion
+
 #Set defaults
 func _ready() -> void:
 	current_state = Global.State.WORK
@@ -50,8 +52,9 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.work_duration
 			current_max_time = Global.work_duration
-			texture_progress_bar.tint_progress = Color.RED
+			texture_progress_bar.tint_progress = FOCUS_COLOR
 			status_label.text = "Work!"
+			tween_bg_color(FOCUS_COLOR)
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
@@ -59,12 +62,23 @@ func switch_state(new_state : Global.State, from_pause : bool):
 				audio_stream_player.play()
 			texture_progress_bar.max_value = Global.short_pause_duration
 			current_max_time = Global.short_pause_duration
-			texture_progress_bar.tint_progress = SEA_GREEN
+			texture_progress_bar.tint_progress = BREAK_COLOR
 			status_label.text = "Relax"
+			tween_bg_color(BREAK_COLOR)
 		Global.State.PAUSED:
-			texture_progress_bar.tint_progress = YELLOW
+			texture_progress_bar.tint_progress = PAUSE_COLOR
 			status_label.text = "Paused"
+			tween_bg_color(PAUSE_COLOR)
 	current_state = new_state
+	
+func tween_bg_color(color : Color):
+	print(color)
+	var color_tween = create_tween()
+	color_tween.set_trans(Tween.TRANS_QUAD)
+	color_tween.set_ease(Tween.EASE_IN_OUT)
+	color_tween.tween_property(color_fade, "self_modulate", color, 0.5)
+	await color_tween.finished
+	print(color_fade.self_modulate)
 
 #Switching state should always start timer, if not pause
 func resume():

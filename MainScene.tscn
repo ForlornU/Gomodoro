@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=17 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://bvgs2nhhybpwg" path="res://Assets/next.png" id="4_iajiw"]
+[ext_resource type="Texture2D" uid="uid://bgpuj3terhhhn" path="res://Assets/fade.png" id="5_ib0mx"]
 [ext_resource type="Script" path="res://Scripts/TweenAnimation.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="Texture2D" uid="uid://bqjigamq4exo2" path="res://Assets/timer.png" id="7_w04hh"]
@@ -36,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.435867, 0.590756, 0.461862, 1)
+color = Color(0.317647, 0.431373, 0.337255, 1)
 
 [node name="MainLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -88,6 +89,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_iajiw")
+
+[node name="ColorFade" type="Sprite2D" parent="ColorRect"]
+position = Vector2(266, 218)
+scale = Vector2(0.265833, 0.265833)
+texture = ExtResource("5_ib0mx")
 
 [node name="TimerLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -355,6 +361,30 @@ script = ExtResource("6_yl84g")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -273.0
+offset_top = 85.0
+offset_right = -102.0
+offset_bottom = 181.0
+color = Color(1, 0.498039, 0.313726, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -273.0
+offset_top = 212.0
+offset_right = -102.0
+offset_bottom = 308.0
+color = Color(1, 0.843137, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -273.0
+offset_top = 351.0
+offset_right = -102.0
+offset_bottom = 447.0
+color = Color(0.415686, 0.352941, 0.803922, 1)
 
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
