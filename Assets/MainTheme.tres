@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://xhh6u6jg61xd"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://xhh6u6jg61xd"]
+
+[ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="1_jgivg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mdwd"]
 
@@ -47,6 +49,7 @@ corner_radius_bottom_left = 1
 [resource]
 Button/colors/font_color = Color(0.728823, 0.728822, 0.728822, 1)
 Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_jgivg")
 Button/styles/focus = SubResource("StyleBoxEmpty_6mdwd")
 Button/styles/hover = SubResource("StyleBoxFlat_jmoyw")
 Button/styles/normal = SubResource("StyleBoxEmpty_vjkcs")
