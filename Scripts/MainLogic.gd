@@ -17,6 +17,7 @@ var current_audio_profile : AudioProfile
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var texture_progress_bar: TextureProgressBar = $ColorRect/TimerLabel/TextureProgressBar
 @onready var color_fade: Sprite2D = $ColorRect/ColorFade
+@onready var hourglass: hourglass_controller = $ColorRect/BottomPanel/Timer
 #endregion
 
 #Set defaults
@@ -58,6 +59,7 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 			texture_progress_bar.tint_progress = current_color_profile.focus_color
 			status_label.text = "Work!"
 			tween_bg_color(current_color_profile.focus_color)
+			hourglass.start()
 			
 		Global.State.BREAK:
 			if(!from_pause):
@@ -68,11 +70,13 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 			texture_progress_bar.tint_progress = current_color_profile.break_color
 			status_label.text = "Relax"
 			tween_bg_color(current_color_profile.break_color)
+			hourglass.start()
 			
 		Global.State.PAUSED:
 			texture_progress_bar.tint_progress = current_color_profile.pause_color
 			status_label.text = "Paused"
 			tween_bg_color(current_color_profile.pause_color)
+			hourglass.stop()
 			
 	current_state = new_state
 	
