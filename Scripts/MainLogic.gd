@@ -12,11 +12,10 @@ var current_audio_profile : AudioProfile
 @onready var ui_controller: UIController = $UIController
 @onready var hourglass: hourglass_controller = $ColorRect/BottomPanel/Timer
 
-#region references
+#References
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-#endregion
 
 #Set defaults
 func _ready() -> void:
@@ -25,7 +24,7 @@ func _ready() -> void:
 	_on_audio_selected(0)
 	get_window().always_on_top = true
 	timer.wait_time = 1800
-	current_max_time = int(timer.wait_time)
+	current_max_time = int(1800)
 
 #Update time label every frame
 func _process(_delta: float) -> void:
@@ -80,24 +79,15 @@ func _on_timer_timeout() -> void:
 
 func _on_settings_button_pressed() -> void:
 	var next_state = !settings_panel.visible # next state is opposite of current visible state
-	#Create Tween
-	var slide_tween = create_tween()
-	slide_tween.set_trans(Tween.TRANS_BACK)
-	slide_tween.set_ease(Tween.EASE_IN_OUT)
-	#If opening menu, pause and tween
+	ui_controller.tween_settings_panel(next_state)
 	if(next_state == true):
-		settings_panel.visible = true
 		timer.paused = true
 		switch_state(Global.State.PAUSED, false)
-		slide_tween.tween_property(settings_panel, "position", Vector2(62.5, 93), 0.8)
 	#If closing menu, resume, tween and set visible = false
 	if(next_state == false):
 		resume()
-		switch_state(previous_state, true)
-		slide_tween.tween_property(settings_panel, "position", Vector2(63,-450), 0.8)
-		await slide_tween.finished
-		settings_panel.visible = false
-		
+		switch_state(previous_state, true)	
+
 func _always_on_top_toggle(toggled_on: bool) -> void:
 	get_window().always_on_top = toggled_on
 

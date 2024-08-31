@@ -12,6 +12,7 @@ func _ready() -> void:
 	settings_panel.visible = false
 	timer_label.text = "--:--"
 	settings_panel.position = Vector2(63,-450)
+	texture_progress_bar.value = texture_progress_bar.max_value
 
 func update_timer_progress(progress_value : int, timer_text : String) -> void:
 	texture_progress_bar.value = progress_value
@@ -28,7 +29,19 @@ func tween_bg_color(color : Color):
 	color_tween.set_ease(Tween.EASE_IN_OUT)
 	color_tween.tween_property(color_fade, "self_modulate", color, 0.5)
 	await color_tween.finished
-
+	
+func tween_settings_panel(active : bool):
+	var slide_tween = create_tween()
+	slide_tween.set_trans(Tween.TRANS_BACK)
+	slide_tween.set_ease(Tween.EASE_IN_OUT)
+	if(active):
+		settings_panel.visible = true
+		slide_tween.tween_property(settings_panel, "position", Vector2(62.5, 93), 0.8)
+	else:
+		slide_tween.tween_property(settings_panel, "position", Vector2(63,-450), 0.8)
+		await slide_tween.finished
+		settings_panel.visible = false
+	
 func update_background_colors(bg_color : Color) -> void:
 	#Set main bg color
 	color_rect.color = bg_color
@@ -40,4 +53,3 @@ func update_background_colors(bg_color : Color) -> void:
 	slightly_darker_color = Color(slightly_darker_color.r * darken_scalar, slightly_darker_color.g * darken_scalar, slightly_darker_color.b * darken_scalar, slightly_darker_color.a)
 	stylebox.bg_color = slightly_darker_color
 	panel_theme.set_stylebox("panel", "Panel", stylebox)
-	settings_panel.theme = panel_theme
