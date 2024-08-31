@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=19 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/MainLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
 [ext_resource type="Script" path="res://Scripts/Controllers/UIController.gd" id="2_0kwvi"]
+[ext_resource type="Script" path="res://Scripts/Controllers/ButtonHandler.gd" id="2_damhi"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://Assets/timer_label.tres" id="3_f5d3i"]
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/Art/wrench.png" id="4_fogco"]
@@ -30,6 +31,9 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jejwl")
+
+[node name="ButtonsController" type="Node" parent="."]
+script = ExtResource("2_damhi")
 
 [node name="UIController" type="Node" parent="."]
 script = ExtResource("2_0kwvi")
@@ -401,7 +405,7 @@ item_2/text = "Color Blind"
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
-[connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="." method="_always_on_top_toggle"]
+[connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="ButtonsController" method="_on_always_ontop"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="." method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="." method="_on_timevalue_changed"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="." method="_on_pausetime_changed"]

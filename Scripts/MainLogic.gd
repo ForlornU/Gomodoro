@@ -20,7 +20,7 @@ var current_audio_profile : AudioProfile
 #Set defaults
 func _ready() -> void:
 	current_state = Global.State.WORK
-	_on_theme_select(0) # set default theme
+	_on_theme_select(1) # set default theme
 	_on_audio_selected(0)
 	get_window().always_on_top = true
 	timer.wait_time = 1800
@@ -83,13 +83,9 @@ func _on_settings_button_pressed() -> void:
 	if(next_state == true):
 		timer.paused = true
 		switch_state(Global.State.PAUSED, false)
-	#If closing menu, resume, tween and set visible = false
 	if(next_state == false):
 		resume()
 		switch_state(previous_state, true)	
-
-func _always_on_top_toggle(toggled_on: bool) -> void:
-	get_window().always_on_top = toggled_on
 
 #Changing Work duration
 func _on_timevalue_changed(value: int) -> void:
