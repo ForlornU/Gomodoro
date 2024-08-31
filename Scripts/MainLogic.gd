@@ -87,18 +87,6 @@ func _on_settings_button_pressed() -> void:
 		resume()
 		switch_state(previous_state, true)	
 
-#Changing Work duration
-func _on_timevalue_changed(value: int) -> void:
-	print("New work duration set to: " + str(value) + " seconds")
-	var new_time : int = 60*value
-	Global.work_duration = new_time
-	
-#Changing break_duration
-func _on_pausetime_changed(value: int) -> void:
-	print("New break duration set to: " + str(value)+ " seconds")
-	var new_time : int = 60*value
-	Global.short_pause_duration = new_time
-
 func _on_pause() -> void:
 	timer.paused = !timer.paused
 	play_audio(current_audio_profile.pause_audio)
@@ -107,9 +95,6 @@ func _on_pause() -> void:
 		switch_state(previous_state, true)
 	else:
 		switch_state(Global.State.PAUSED, false)
-
-func _on_sound_check_toggled(toggled_on: bool) -> void:
-	audio_stream_player.volume_db = 0 if toggled_on else -80
 	
 func _next_state_pressed() -> void:
 	if(timer.is_stopped()): #First time running
@@ -123,9 +108,6 @@ func _next_state_pressed() -> void:
 	elif(current_state == Global.State.PAUSED):
 		switch_state(previous_state, true)
 
-func _on_close_button_pressed() -> void:
-	_on_settings_button_pressed()
-	
 func _on_audio_selected(index: int) -> void:
 	match index:
 		0: 	
