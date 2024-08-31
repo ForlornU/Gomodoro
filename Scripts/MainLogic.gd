@@ -180,5 +180,16 @@ func _on_theme_select(index: int) -> void:
 			current_color_profile = Global.dark_theme
 		2:
 			current_color_profile = Global.color_blind_dark_theme
+	set_panel_bg_color()
 	color_rect.color = current_color_profile.background_color
+	
+func set_panel_bg_color() -> void:
+	var panel_theme = settings_panel.theme
+	var stylebox : StyleBoxFlat = panel_theme.get_stylebox("panel", "Panel") as StyleBoxFlat
+	var slightly_darker_color = current_color_profile.background_color
+	var darken_scalar = 0.75
+	slightly_darker_color = Color(slightly_darker_color.r * darken_scalar, slightly_darker_color.g * darken_scalar, slightly_darker_color.b * darken_scalar, slightly_darker_color.a)
+	stylebox.bg_color = slightly_darker_color
+	panel_theme.set_stylebox("panel", "Panel", stylebox)
+	settings_panel.theme = panel_theme
 #endregion
