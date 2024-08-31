@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=18 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/MainLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
+[ext_resource type="Script" path="res://Scripts/Controllers/UIController.gd" id="2_0kwvi"]
 [ext_resource type="LabelSettings" uid="uid://c7ql4jt5wyol1" path="res://Assets/timer_label.tres" id="3_f5d3i"]
 [ext_resource type="Theme" uid="uid://xhh6u6jg61xd" path="res://Assets/MainTheme.tres" id="3_pm7a3"]
 [ext_resource type="Texture2D" uid="uid://bp5r22spjv14f" path="res://Assets/Art/wrench.png" id="4_fogco"]
 [ext_resource type="Texture2D" uid="uid://bvgs2nhhybpwg" path="res://Assets/Art/next.png" id="4_iajiw"]
 [ext_resource type="Texture2D" uid="uid://bgpuj3terhhhn" path="res://Assets/Art/fade.png" id="5_ib0mx"]
-[ext_resource type="Script" path="res://Scripts/HourglassController.gd" id="6_yl84g"]
+[ext_resource type="Script" path="res://Scripts/Controllers/HourglassController.gd" id="6_yl84g"]
 [ext_resource type="Texture2D" uid="uid://bhusy5xk81u0s" path="res://Assets/Art/SmallCircle.png" id="7_ae4gr"]
 [ext_resource type="FontFile" uid="uid://di85esg47158x" path="res://Assets/ModernSans-Light.otf" id="8_2qp0x"]
 [ext_resource type="Texture2D" uid="uid://dp88wghydhe2a" path="res://Assets/Art/LargeCircle.png" id="8_6mh3c"]
@@ -29,6 +30,9 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jejwl")
+
+[node name="UIController" type="Node" parent="."]
+script = ExtResource("2_0kwvi")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

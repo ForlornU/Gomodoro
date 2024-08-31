@@ -8,16 +8,14 @@ var current_max_time : int
 var current_color_profile : ColorProfile
 var current_audio_profile : AudioProfile
 
+#Controllers
+@onready var ui_controller: UIController = $UIController
+@onready var hourglass: hourglass_controller = $ColorRect/BottomPanel/Timer
+
 #region references
-@onready var color_rect: ColorRect = $ColorRect
-@onready var status_label: Label = $ColorRect/MainLabel
-@onready var timer_label: Label = $ColorRect/TimerLabel
 @onready var timer: Timer = $Timer
 @onready var settings_panel: Panel = $ColorRect/SettingsPanel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var texture_progress_bar: TextureProgressBar = $ColorRect/TimerLabel/TextureProgressBar
-@onready var color_fade: Sprite2D = $ColorRect/ColorFade
-@onready var hourglass: hourglass_controller = $ColorRect/BottomPanel/Timer
 #endregion
 
 #Set defaults
@@ -26,11 +24,8 @@ func _ready() -> void:
 	_on_theme_select(0) # set default theme
 	_on_audio_selected(0)
 	get_window().always_on_top = true
-	settings_panel.visible = false
-	timer_label.text = "--:--"
 	timer.wait_time = 1800
 	current_max_time = int(timer.wait_time)
-	settings_panel.position = Vector2(145,-450)
 
 #Update time label every frame
 func _process(_delta: float) -> void:
@@ -38,11 +33,7 @@ func _process(_delta: float) -> void:
 	var minutes = int(timer.time_left) / 60
 	var seconds = int(timer.time_left) % 60
 	if(!timer.is_stopped()):
-		if(minutes < 1):
-			timer_label.text = str(seconds)
-		else:
-			timer_label.text = str(minutes) + ":" + str(seconds)
-	texture_progress_bar.value = current_max_time - timer.time_left
+		ui_controller.update_timer_progress(current_max_time - timer.time_left, str(minutes) + ":" + str(seconds))
 
 func switch_state(new_state : Global.State, from_pause : bool) -> void:
 	if(current_state == new_state && timer.is_stopped() == false):
@@ -54,40 +45,24 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 			if(!from_pause):
 				timer.start(Global.work_duration)
 				play_audio(current_audio_profile.work_transition_audio)
-			texture_progress_bar.max_value = Global.work_duration
+			ui_controller.update_ui_state(Global.work_duration, current_color_profile.focus_color, "Focus")
 			current_max_time = Global.work_duration
-			texture_progress_bar.tint_progress = current_color_profile.focus_color
-			status_label.text = "Work!"
-			tween_bg_color(current_color_profile.focus_color)
 			hourglass.start()
 			
 		Global.State.BREAK:
 			if(!from_pause):
 				timer.start(Global.short_pause_duration)
 				play_audio(current_audio_profile.break_transition_audio)
-			texture_progress_bar.max_value = Global.short_pause_duration
+			ui_controller.update_ui_state(Global.short_pause_duration, current_color_profile.break_color, "Relax")
 			current_max_time = Global.short_pause_duration
-			texture_progress_bar.tint_progress = current_color_profile.break_color
-			status_label.text = "Relax"
-			tween_bg_color(current_color_profile.break_color)
 			hourglass.start()
 			
 		Global.State.PAUSED:
-			texture_progress_bar.tint_progress = current_color_profile.pause_color
-			status_label.text = "Paused"
-			tween_bg_color(current_color_profile.pause_color)
+			ui_controller.update_ui_state(0, current_color_profile.pause_color, "Paused")
 			hourglass.stop()
 			
 	current_state = new_state
-	
-func tween_bg_color(color : Color):
-	var color_tween = create_tween()
-	color_tween.set_trans(Tween.TRANS_QUAD)
-	color_tween.set_ease(Tween.EASE_IN_OUT)
-	color_tween.tween_property(color_fade, "self_modulate", color, 0.5)
-	await color_tween.finished
 
-#Switching state should always start timer, if not pause
 func resume():
 	timer.paused = false
 	
@@ -180,16 +155,7 @@ func _on_theme_select(index: int) -> void:
 			current_color_profile = Global.dark_theme
 		2:
 			current_color_profile = Global.color_blind_dark_theme
-	set_panel_bg_color()
-	color_rect.color = current_color_profile.background_color
-	
-func set_panel_bg_color() -> void:
-	var panel_theme = settings_panel.theme
-	var stylebox : StyleBoxFlat = panel_theme.get_stylebox("panel", "Panel") as StyleBoxFlat
-	var slightly_darker_color = current_color_profile.background_color
-	var darken_scalar = 0.75
-	slightly_darker_color = Color(slightly_darker_color.r * darken_scalar, slightly_darker_color.g * darken_scalar, slightly_darker_color.b * darken_scalar, slightly_darker_color.a)
-	stylebox.bg_color = slightly_darker_color
-	panel_theme.set_stylebox("panel", "Panel", stylebox)
-	settings_panel.theme = panel_theme
+			
+	ui_controller.update_background_colors(current_color_profile.background_color)
+
 #endregion
