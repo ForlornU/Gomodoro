@@ -13,10 +13,12 @@ config_version=5
 config/name="Gomodoro"
 config/description="Let this pomodoro-timer help you find a reasonable balance between work and free time!"
 config/version="0.1"
+config/tags=PackedStringArray("application")
 run/main_scene="res://MainScene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-boot_splash/image="res://Assets/Art/GomodoroLogo.png"
+boot_splash/image="res://Assets/Art/Logo/GomodoroLogo_512.png"
 boot_splash/fullsize=false
+config/icon="res://Assets/Art/Logo/GomodoroLogo_256.png"
 
 [autoload]
 
