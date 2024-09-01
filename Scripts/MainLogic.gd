@@ -121,6 +121,8 @@ func _on_theme_select(index: int) -> void:
 			current_color_profile = Global.dark_theme
 		2:
 			current_color_profile = Global.color_blind_dark_theme
+		3: 
+			current_color_profile = Global.pomodoro_red_theme
 			
 	ui_controller.update_background_colors(current_color_profile.background_color)
 
