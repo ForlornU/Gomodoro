@@ -7,7 +7,7 @@ var starting_scale : Vector2
 var keep_playing : bool = false
 
 func start() -> void:
-	if(keep_playing == true):
+	if(keep_playing == true): #Ignore if we are already playing
 		return
 		
 	keep_playing = true

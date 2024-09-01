@@ -4,7 +4,6 @@ class_name MainLogic
 #State
 var current_state : Global.State
 var previous_state : Global.State
-var current_max_time : int
 var current_color_profile : ColorProfile
 var current_audio_profile : AudioProfile
 
@@ -24,7 +23,6 @@ func _ready() -> void:
 	_on_audio_selected(0)
 	get_window().always_on_top = true
 	timer.wait_time = 1800
-	current_max_time = int(1800)
 
 #Update time label every frame
 func _process(_delta: float) -> void:
@@ -32,8 +30,10 @@ func _process(_delta: float) -> void:
 	var minutes = int(timer.time_left) / 60
 	var seconds = int(timer.time_left) % 60
 	if(!timer.is_stopped()):
-		ui_controller.update_timer_progress(current_max_time - timer.time_left, str(minutes) + ":" + str(seconds))
+		ui_controller.update_timer_progress(timer.wait_time - timer.time_left, str(minutes) + ":" + str(seconds))
 
+#Switch to a different state, work, break or user-selected-pause
+#from_pause is to make sure we dont play the new state sound whenever the player unpauses
 func switch_state(new_state : Global.State, from_pause : bool) -> void:
 	if(current_state == new_state && timer.is_stopped() == false):
 		return
@@ -45,7 +45,6 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 				timer.start(Global.work_duration)
 				play_audio(current_audio_profile.work_transition_audio)
 			ui_controller.update_ui_state(Global.work_duration, current_color_profile.focus_color, "Focus")
-			current_max_time = Global.work_duration
 			hourglass.start()
 			
 		Global.State.BREAK:
@@ -53,7 +52,6 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 				timer.start(Global.short_pause_duration)
 				play_audio(current_audio_profile.break_transition_audio)
 			ui_controller.update_ui_state(Global.short_pause_duration, current_color_profile.break_color, "Relax")
-			current_max_time = Global.short_pause_duration
 			hourglass.start()
 			
 		Global.State.PAUSED:
@@ -78,13 +76,13 @@ func _on_timer_timeout() -> void:
 		switch_state(Global.State.WORK, false)
 
 func _on_settings_button_pressed() -> void:
-	var next_state = !settings_panel.visible # next state is opposite of current visible state
+	# next state is opposite of current state
+	var next_state = !ui_controller.is_settings_open() 
 	ui_controller.tween_settings_panel(next_state)
+	timer.paused = next_state #Start or pause timer depending on settings panel open or closed
 	if(next_state == true):
-		timer.paused = true
 		switch_state(Global.State.PAUSED, false)
 	if(next_state == false):
-		resume()
 		switch_state(previous_state, true)	
 
 func _on_pause() -> void:
@@ -97,7 +95,7 @@ func _on_pause() -> void:
 		switch_state(Global.State.PAUSED, false)
 	
 func _next_state_pressed() -> void:
-	if(timer.is_stopped()): #First time running
+	if(timer.is_stopped()): #First time running, start work state
 		switch_state(Global.State.WORK, false)
 		return
 	resume()

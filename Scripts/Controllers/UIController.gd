@@ -30,6 +30,9 @@ func tween_bg_color(color : Color):
 	color_tween.tween_property(color_fade, "self_modulate", color, 0.5)
 	await color_tween.finished
 	
+func is_settings_open() -> bool:
+	return settings_panel.visible
+	
 func tween_settings_panel(active : bool):
 	var slide_tween = create_tween()
 	slide_tween.set_trans(Tween.TRANS_BACK)

@@ -372,7 +372,7 @@ anchor_bottom = 0.5
 offset_left = -178.0
 offset_top = -47.5
 offset_right = -96.0
-offset_bottom = 14.5
+offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 item_count = 2
@@ -386,17 +386,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -43.5
-offset_right = 178.0
-offset_bottom = 29.5
+offset_left = 81.0
+offset_top = -47.5
+offset_right = 185.0
+offset_bottom = 47.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
-item_count = 3
-item_0/text = "Default"
-item_1/text = "Dark Blue"
+item_count = 4
+item_0/text = "Olive"
+item_1/text = "Default"
 item_2/text = "Color Blind"
+item_3/text = "Pomodoro"
 
 [node name="Timer" type="Timer" parent="."]
 
