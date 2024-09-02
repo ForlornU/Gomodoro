@@ -18,17 +18,7 @@ expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjkcs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kori"]
-bg_color = Color(0.196078, 0.254902, 0.207843, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 3
-expand_margin_left = 9.0
-expand_margin_top = 9.0
-expand_margin_right = 9.0
-expand_margin_bottom = 9.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0jbm2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35og8"]
 
@@ -53,7 +43,7 @@ Button/fonts/font = ExtResource("1_jgivg")
 Button/styles/focus = SubResource("StyleBoxEmpty_6mdwd")
 Button/styles/hover = SubResource("StyleBoxFlat_jmoyw")
 Button/styles/normal = SubResource("StyleBoxEmpty_vjkcs")
-Button/styles/pressed = SubResource("StyleBoxFlat_6kori")
+Button/styles/pressed = SubResource("StyleBoxEmpty_0jbm2")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_35og8")
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_cfvki")
 ItemList/fonts/font = ExtResource("1_jgivg")

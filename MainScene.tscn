@@ -222,29 +222,14 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 18.0
-offset_top = 55.5
-offset_right = 205.0
-offset_bottom = 89.5
+offset_left = 14.0
+offset_top = 49.5
+offset_right = 209.0
+offset_bottom = 83.5
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 button_pressed = true
 text = "Always on top"
-
-[node name="sound_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 17.0
-offset_top = 112.5
-offset_right = 206.0
-offset_bottom = 162.5
-grow_vertical = 2
-theme = ExtResource("3_pm7a3")
-button_pressed = true
-text = "Audio"
-icon = ExtResource("8_mfab3")
 
 [node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
@@ -298,10 +283,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -178.0
-offset_top = 137.0
-offset_right = -31.0
-offset_bottom = 158.0
+offset_left = -186.0
+offset_top = 138.0
+offset_right = -39.0
+offset_bottom = 159.0
 grow_horizontal = 2
 text = "Sound Profile "
 label_settings = SubResource("LabelSettings_olgw3")
@@ -316,7 +301,7 @@ offset_top = 138.0
 offset_right = 184.0
 offset_bottom = 159.0
 grow_horizontal = 2
-text = "Theme"
+text = "Visual Profile"
 label_settings = SubResource("LabelSettings_olgw3")
 horizontal_alignment = 2
 
@@ -369,10 +354,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -178.0
-offset_top = -47.5
-offset_right = -96.0
-offset_bottom = 2.5
+offset_left = -187.0
+offset_top = -43.5
+offset_right = -105.0
+offset_bottom = 6.5
 grow_horizontal = 2
 grow_vertical = 2
 item_count = 2
@@ -399,6 +384,26 @@ item_1/text = "Default"
 item_2/text = "Color Blind"
 item_3/text = "Pomodoro"
 
+[node name="HSlider" type="HSlider" parent="ColorRect/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -65.0
+offset_right = -10.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = -80.0
+max_value = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/SettingsPanel/HSlider"]
+position = Vector2(188, -14)
+scale = Vector2(0.74, 0.74)
+texture = ExtResource("8_mfab3")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -407,10 +412,10 @@ item_3/text = "Pomodoro"
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="ButtonsController" method="_on_always_ontop"]
-[connection signal="toggled" from="ColorRect/SettingsPanel/sound_check" to="ButtonsController" method="_on_sound_check_toggled"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="ButtonsController" method="_on_worktime_changed"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="ButtonsController" method="_on_pausetime_changed"]
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_settings_button_pressed"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/HSlider" to="ButtonsController" method="_on_volume_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
