@@ -20,6 +20,7 @@ func update_timer_progress(progress_value : int, timer_text : String) -> void:
 	
 func update_ui_state(new_max_value : int, new_state_color : Color, label_text : String) -> void:
 	texture_progress_bar.max_value = new_max_value
+	texture_progress_bar.tint_progress = new_state_color
 	main_label.text = label_text
 	tween_bg_color(new_state_color)
 
