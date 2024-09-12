@@ -22,7 +22,7 @@
 font = ExtResource("8_2qp0x")
 font_size = 20
 
-[node name="Control" type="Control"]
+[node name="Root" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

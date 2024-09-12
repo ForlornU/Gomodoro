@@ -6,6 +6,7 @@ var current_turn = hourglass_turn.clockwise #Starts clockwise
 var starting_scale : Vector2
 var keep_playing : bool = false
 
+
 func start() -> void:
 	if(keep_playing == true): #Ignore if we are already playing
 		return
@@ -15,9 +16,11 @@ func start() -> void:
 		turn_counterclockwise()
 	else:
 		turn_clockwise()
-		
+
+
 func stop() -> void:
 	keep_playing = false
+
 
 func turn_clockwise():
 	var tween = create_tween()
@@ -28,7 +31,8 @@ func turn_clockwise():
 	current_turn = hourglass_turn.counterclockwise
 	if(keep_playing):
 		turn_counterclockwise()
-		
+
+
 func turn_counterclockwise():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
