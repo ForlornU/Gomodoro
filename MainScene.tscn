@@ -222,7 +222,7 @@ theme = ExtResource("3_pm7a3")
 button_pressed = true
 text = "Always on top"
 
-[node name="worktimeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
+[node name="focus_timeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -239,7 +239,7 @@ min_value = 15.0
 max_value = 180.0
 value = 25.0
 
-[node name="pausetimeselector2" type="SpinBox" parent="ColorRect/SettingsPanel"]
+[node name="break_timeselector" type="SpinBox" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -269,7 +269,7 @@ grow_horizontal = 2
 text = "Time (minutes)"
 label_settings = SubResource("LabelSettings_olgw3")
 
-[node name="SoundLabel" type="Label" parent="ColorRect/SettingsPanel"]
+[node name="SoundProfileLabel" type="Label" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -282,7 +282,7 @@ grow_horizontal = 2
 text = "Sound Profile "
 label_settings = SubResource("LabelSettings_olgw3")
 
-[node name="SoundLabel2" type="Label" parent="ColorRect/SettingsPanel"]
+[node name="VisualProfileLabel" type="Label" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -296,7 +296,7 @@ text = "Visual Profile"
 label_settings = SubResource("LabelSettings_olgw3")
 horizontal_alignment = 2
 
-[node name="work_time" type="Label" parent="ColorRect/SettingsPanel"]
+[node name="focus_time" type="Label" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -306,7 +306,7 @@ offset_top = 48.0
 offset_right = -23.5
 offset_bottom = 69.0
 grow_horizontal = 2
-text = "work: "
+text = "Focus: "
 label_settings = SubResource("LabelSettings_olgw3")
 
 [node name="pause_time" type="Label" parent="ColorRect/SettingsPanel"]
@@ -319,7 +319,7 @@ offset_top = 80.5
 offset_right = -24.0
 offset_bottom = 101.5
 grow_horizontal = 2
-text = "break:"
+text = "Break:"
 label_settings = SubResource("LabelSettings_olgw3")
 
 [node name="CloseButton" type="Button" parent="ColorRect/SettingsPanel"]
@@ -347,13 +347,14 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -187.0
 offset_top = -43.5
-offset_right = -105.0
-offset_bottom = 6.5
+offset_right = -70.0
+offset_bottom = 44.5
 grow_horizontal = 2
 grow_vertical = 2
-item_count = 2
+item_count = 3
 item_0/text = "Soft"
 item_1/text = "Harsh"
+item_2/text = "Alarm"
 
 [node name="ItemList2" type="ItemList" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
@@ -403,8 +404,8 @@ texture = ExtResource("8_mfab3")
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/PauseButton" to="." method="_on_pause"]
 [connection signal="toggled" from="ColorRect/SettingsPanel/ontop_check" to="ButtonsController" method="_on_always_ontop"]
-[connection signal="value_changed" from="ColorRect/SettingsPanel/worktimeselector" to="ButtonsController" method="_on_worktime_changed"]
-[connection signal="value_changed" from="ColorRect/SettingsPanel/pausetimeselector2" to="ButtonsController" method="_on_pausetime_changed"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/focus_timeselector" to="ButtonsController" method="_on_worktime_changed"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/break_timeselector" to="ButtonsController" method="_on_pausetime_changed"]
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_settings_button_pressed"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]

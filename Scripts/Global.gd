@@ -7,6 +7,7 @@ const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
 const TAKE_A_BREAK = preload("res://Assets/Audio/TakeABreak.wav")
 const SOFT_STATECHANGE = preload("res://Assets/Audio/StateChangeSoft.wav")
 const POP = preload("res://Assets/Audio/Pop.ogg")
+const SHORT_ALARM = preload("res://Assets/Audio/ShortAlarm.wav")
 
 #Profiles
 var green_theme = ColorProfile.new(Color(0x516e56ff), Color(0xff7f50ff), Color(0x6a5acdff), Color(0xffd700ff))
@@ -16,6 +17,7 @@ var pomodoro_red_theme = ColorProfile.new(Color(0xff6347ff), Color(0x32cd32ff), 
 
 var soft_audio_profile = AudioProfile.new(SOFT_STATECHANGE, SOFT_STATECHANGE, POP)
 var harsh_audio_profile = AudioProfile.new(BACK_TO_WORK, TAKE_A_BREAK, POP)
+var alarm_audio_profile = AudioProfile.new(SHORT_ALARM, SHORT_ALARM, POP)
 
 var focus_duration = 1800 #Default 30min
 var short_pause_duration = 300 # 5min

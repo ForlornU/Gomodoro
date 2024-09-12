@@ -125,6 +125,8 @@ func _on_audio_selected(index: int) -> void:
 			current_audio_profile = Global.soft_audio_profile
 		1:
 			current_audio_profile = Global.harsh_audio_profile
+		2:
+			current_audio_profile = Global.alarm_audio_profile
 
 
 func _on_theme_select(index: int) -> void:
