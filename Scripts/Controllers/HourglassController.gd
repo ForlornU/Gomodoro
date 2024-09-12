@@ -1,5 +1,5 @@
 extends Sprite2D
-class_name hourglass_controller
+class_name HourglassController
 
 enum hourglass_turn {clockwise, counterclockwise}
 var current_turn = hourglass_turn.clockwise #Starts clockwise

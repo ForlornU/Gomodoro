@@ -22,7 +22,7 @@
 font = ExtResource("8_2qp0x")
 font_size = 20
 
-[node name="Root" type="Control"]
+[node name="Root" type="Control" node_paths=PackedStringArray("ui_controller", "hourglass", "timer", "settings_panel", "audio_stream_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,11 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jejwl")
+ui_controller = NodePath("UIController")
+hourglass = NodePath("ColorRect/BottomPanel/Hourglass")
+timer = NodePath("Timer")
+settings_panel = NodePath("ColorRect/SettingsPanel")
+audio_stream_player = NodePath("AudioStreamPlayer")
 
 [node name="ButtonsController" type="Node" parent="."]
 script = ExtResource("2_damhi")
@@ -182,7 +187,7 @@ grow_vertical = 0
 theme = ExtResource("3_pm7a3")
 icon = ExtResource("11_xoo8n")
 
-[node name="Timer" type="Sprite2D" parent="ColorRect/BottomPanel"]
+[node name="Hourglass" type="Sprite2D" parent="ColorRect/BottomPanel"]
 texture_filter = 4
 position = Vector2(265, 26)
 texture = ExtResource("11_x8x2s")
