@@ -376,7 +376,7 @@ item_1/text = "Default"
 item_2/text = "Color Blind"
 item_3/text = "Pomodoro"
 
-[node name="HSlider" type="HSlider" parent="ColorRect/SettingsPanel"]
+[node name="VolumeSlider" type="HSlider" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -388,10 +388,11 @@ offset_right = -10.0
 offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 0
-min_value = -80.0
-max_value = 0.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/SettingsPanel/HSlider"]
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/SettingsPanel/VolumeSlider"]
 position = Vector2(188, -14)
 scale = Vector2(0.74, 0.74)
 texture = ExtResource("8_mfab3")
@@ -409,5 +410,5 @@ texture = ExtResource("8_mfab3")
 [connection signal="pressed" from="ColorRect/SettingsPanel/CloseButton" to="." method="_on_settings_button_pressed"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]
-[connection signal="value_changed" from="ColorRect/SettingsPanel/HSlider" to="ButtonsController" method="_on_volume_changed"]
+[connection signal="value_changed" from="ColorRect/SettingsPanel/VolumeSlider" to="ButtonsController" method="_on_volume_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

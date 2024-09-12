@@ -14,7 +14,7 @@ func _ready() -> void:
 	settings_panel.position = Vector2(63,-450)
 	texture_progress_bar.value = texture_progress_bar.max_value
 
-func update_timer_progress(progress_value : int, timer_text : String) -> void:
+func update_timer_progress(progress_value : float, timer_text : String) -> void:
 	texture_progress_bar.value = progress_value
 	timer_label.text = timer_text
 	
