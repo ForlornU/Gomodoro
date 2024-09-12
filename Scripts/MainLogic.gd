@@ -19,8 +19,8 @@ var current_audio_profile : AudioProfile
 
 #Set defaults
 func _ready() -> void:
-	current_state = Global.State.WORK
-	_on_theme_select(1) # set default theme
+	current_state = Global.State.FOCUS
+	_on_theme_select(1) # set default profiles
 	_on_audio_selected(0)
 	get_window().always_on_top = true
 	timer.wait_time = 1800
@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 		ui_controller.update_timer_progress(timer.wait_time - timer.time_left, number_display)
 
 
-#Switch to a different state, work, break or user-selected-pause
+#Switch to a different state, focus, break or user-selected-pause
 #from_pause is to make sure we dont play the new state sound whenever the player unpauses
 func switch_state(new_state : Global.State, from_pause : bool) -> void:
 	if(current_state == new_state && timer.is_stopped() == false):
@@ -46,11 +46,11 @@ func switch_state(new_state : Global.State, from_pause : bool) -> void:
 	previous_state = current_state
 	
 	match new_state:
-		Global.State.WORK:
+		Global.State.FOCUS:
 			if(!from_pause):
-				timer.start(Global.work_duration)
-				play_audio(current_audio_profile.work_transition_audio)
-			ui_controller.update_ui_state(Global.work_duration, current_color_profile.focus_color, "Focus")
+				timer.start(Global.focus_duration)
+				play_audio(current_audio_profile.focus_transition_audio)
+			ui_controller.update_ui_state(Global.focus_duration, current_color_profile.focus_color, "Focus")
 			hourglass.start()
 			
 		Global.State.BREAK:
@@ -79,10 +79,10 @@ func play_audio(stream):
 #region Buttons
 #After the timer runs out, switch state
 func _on_timer_timeout() -> void:
-	if(current_state == Global.State.WORK):
+	if(current_state == Global.State.FOCUS):
 		switch_state(Global.State.BREAK, false)
 	elif(current_state == Global.State.BREAK):
-		switch_state(Global.State.WORK, false)
+		switch_state(Global.State.FOCUS, false)
 
 
 func _on_settings_button_pressed() -> void:
@@ -107,14 +107,14 @@ func _on_pause() -> void:
 
 
 func _next_state_pressed() -> void:
-	if(timer.is_stopped()): #First time running, start work state
-		switch_state(Global.State.WORK, false)
+	if(timer.is_stopped()): #First time running, start focus state
+		switch_state(Global.State.FOCUS, false)
 		return
 	resume()
-	if(current_state == Global.State.WORK):
+	if(current_state == Global.State.FOCUS):
 		switch_state(Global.State.BREAK, false)
 	elif(current_state == Global.State.BREAK):
-		switch_state(Global.State.WORK, false)
+		switch_state(Global.State.FOCUS, false)
 	elif(current_state == Global.State.PAUSED):
 		switch_state(previous_state, true)
 

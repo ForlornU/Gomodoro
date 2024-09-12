@@ -1,6 +1,6 @@
 extends Node
 
-enum State {WORK, BREAK, PAUSED}
+enum State {FOCUS, BREAK, PAUSED}
 
 #Sounds
 const BACK_TO_WORK = preload("res://Assets/Audio/BackToWork.wav")
@@ -17,6 +17,6 @@ var pomodoro_red_theme = ColorProfile.new(Color(0xff6347ff), Color(0x32cd32ff), 
 var soft_audio_profile = AudioProfile.new(SOFT_STATECHANGE, SOFT_STATECHANGE, POP)
 var harsh_audio_profile = AudioProfile.new(BACK_TO_WORK, TAKE_A_BREAK, POP)
 
-var work_duration = 1800 #Default 30min
+var focus_duration = 1800 #Default 30min
 var short_pause_duration = 300 # 5min
 var cycles = 4 #How many work/break cycles before complete
