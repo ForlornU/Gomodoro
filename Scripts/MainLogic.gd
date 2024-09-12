@@ -9,17 +9,13 @@ var current_audio_profile : AudioProfile
 
 #Controllers
 @export var ui_controller : UIController
-#@onready var ui_controller: UIController = $UIController
 @export var hourglass : HourglassController
-#@onready var hourglass: hourglass_controller = $ColorRect/BottomPanel/Timer
 
 #References
 @export var timer : Timer
 @export var settings_panel : Panel
 @export var audio_stream_player : AudioStreamPlayer
-#@onready var timer: Timer = $Timer
-#@onready var settings_panel: Panel = $ColorRect/SettingsPanel
-#@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 
 #Set defaults
 func _ready() -> void:
