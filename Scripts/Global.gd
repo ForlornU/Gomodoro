@@ -9,10 +9,10 @@ const SOFT_STATECHANGE = preload("res://Assets/Audio/StateChangeSoft.wav")
 const POP = preload("res://Assets/Audio/Pop.ogg")
 
 #Profiles
-var green_theme = ColorProfile.new(Color(0x516e56FF), Color(0xFF7F50FF), Color(0x6A5ACDFF), Color(0xFFD700FF))
-var dark_theme = ColorProfile.new(Color.DARK_SLATE_GRAY, Color(0xFF7F7FFF), Color(0x87CEEBFF), Color(0xFFD700FF))
-var color_blind_dark_theme = ColorProfile.new(Color(0x2F4F4FFF), Color(0xD55E00FF), Color(0x0072B2FF), Color(0xCC79A7FF))
-var pomodoro_red_theme = ColorProfile.new(Color(0xFF6347FF), Color(0x32CD32FF), Color(0x00BFFF), Color(0xFFD700FF))
+var green_theme = ColorProfile.new(Color(0x516e56ff), Color(0xff7f50ff), Color(0x6a5acdff), Color(0xffd700ff))
+var dark_theme = ColorProfile.new(Color.DARK_SLATE_GRAY, Color(0xff7f7fff), Color(0x87ceebff), Color(0xffd700ff))
+var color_blind_dark_theme = ColorProfile.new(Color(0x2f4f4fff), Color(0xd55e00ff), Color(0x0072b2ff), Color(0xcc79a7ff))
+var pomodoro_red_theme = ColorProfile.new(Color(0xff6347ff), Color(0x32cd32ff), Color(0x00bfff), Color(0xffd700ff))
 
 var soft_audio_profile = AudioProfile.new(SOFT_STATECHANGE, SOFT_STATECHANGE, POP)
 var harsh_audio_profile = AudioProfile.new(BACK_TO_WORK, TAKE_A_BREAK, POP)
