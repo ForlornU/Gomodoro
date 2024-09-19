@@ -99,7 +99,7 @@ theme = ExtResource("3_pm7a3")
 icon = ExtResource("4_iajiw")
 
 [node name="ColorFade" type="Sprite2D" parent="ColorRect"]
-position = Vector2(266, 218)
+position = Vector2(266, 236)
 scale = Vector2(0.265833, 0.265833)
 texture = ExtResource("5_ib0mx")
 
@@ -111,9 +111,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -38.5
-offset_top = -297.0
+offset_top = -278.0
 offset_right = 43.5
-offset_bottom = -252.0
+offset_bottom = -233.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "00:00"
