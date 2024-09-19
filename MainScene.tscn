@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5ly7bkm4fbg3"]
+[gd_scene load_steps=22 format=3 uid="uid://c5ly7bkm4fbg3"]
 
 [ext_resource type="Script" path="res://Scripts/MainLogic.gd" id="1_jejwl"]
 [ext_resource type="LabelSettings" uid="uid://dllnu5l76xe7o" path="res://Assets/LargeLabel.tres" id="1_x06a6"]
@@ -17,10 +17,16 @@
 [ext_resource type="Texture2D" uid="uid://dilvqkbvivv03" path="res://Assets/Art/cross.png" id="9_i5yx8"]
 [ext_resource type="Texture2D" uid="uid://cj6wly0yhp2b0" path="res://Assets/Art/busy_hourglass.png" id="11_x8x2s"]
 [ext_resource type="Texture2D" uid="uid://dmoel28sa1yp6" path="res://Assets/Art/pause.png" id="11_xoo8n"]
+[ext_resource type="Texture2D" uid="uid://c1yjqx0vo57id" path="res://Assets/Art/exitRight.png" id="18_s4sm8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bvx8"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.313726)
 
 [sub_resource type="LabelSettings" id="LabelSettings_olgw3"]
 font = ExtResource("8_2qp0x")
 font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcq4t"]
 
 [node name="Root" type="Control" node_paths=PackedStringArray("ui_controller", "hourglass", "timer", "settings_panel", "audio_stream_player")]
 layout_mode = 3
@@ -66,17 +72,6 @@ text = "Gomodoro"
 label_settings = ExtResource("1_x06a6")
 horizontal_alignment = 1
 uppercase = true
-
-[node name="Line" type="Panel" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -162.0
-offset_bottom = -159.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="StateButtons" type="Control" parent="ColorRect"]
 layout_mode = 1
@@ -155,6 +150,7 @@ anchor_bottom = 1.0
 offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3bvx8")
 
 [node name="SettingsButton" type="Button" parent="ColorRect/BottomPanel"]
 layout_mode = 1
@@ -164,8 +160,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -207.5
-offset_top = -50.0
+offset_top = -52.0
 offset_right = -157.5
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_pm7a3")
@@ -179,9 +176,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 153.5
-offset_top = -48.0
+offset_top = -52.0
 offset_right = 203.5
-offset_bottom = 2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_pm7a3")
@@ -200,9 +197,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -199.5
+offset_left = -200.0
 offset_top = -939.0
-offset_right = 200.5
+offset_right = 200.0
 offset_bottom = -534.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -210,13 +207,16 @@ theme = ExtResource("3_pm7a3")
 
 [node name="ontop_check" type="CheckButton" parent="ColorRect/SettingsPanel"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 14.0
-offset_top = 49.5
-offset_right = 209.0
-offset_bottom = 83.5
+offset_left = -97.5
+offset_top = 70.5
+offset_right = 97.5
+offset_bottom = 104.5
+grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
 button_pressed = true
@@ -275,9 +275,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -186.0
-offset_top = 138.0
+offset_top = 125.0
 offset_right = -39.0
-offset_bottom = 159.0
+offset_bottom = 146.0
 grow_horizontal = 2
 text = "Sound Profile "
 label_settings = SubResource("LabelSettings_olgw3")
@@ -287,10 +287,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 37.0
-offset_top = 138.0
-offset_right = 184.0
-offset_bottom = 159.0
+offset_left = 33.5
+offset_top = 125.0
+offset_right = 180.5
+offset_bottom = 146.0
 grow_horizontal = 2
 text = "Visual Profile"
 label_settings = SubResource("LabelSettings_olgw3")
@@ -346,9 +346,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -187.0
-offset_top = -43.5
+offset_top = -55.5
 offset_right = -70.0
-offset_bottom = 44.5
+offset_bottom = 32.5
 grow_horizontal = 2
 grow_vertical = 2
 item_count = 3
@@ -363,10 +363,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 81.0
-offset_top = -47.5
-offset_right = 185.0
-offset_bottom = 47.5
+offset_left = 78.5
+offset_top = -55.5
+offset_right = 182.5
+offset_bottom = 39.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pm7a3")
@@ -397,9 +397,110 @@ position = Vector2(188, -14)
 scale = Vector2(0.74, 0.74)
 texture = ExtResource("8_mfab3")
 
+[node name="ExitButton" type="Button" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 464.0
+offset_top = 18.0
+offset_right = 522.0
+offset_bottom = 76.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pcq4t")
+icon = ExtResource("18_s4sm8")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AlignmentHelper" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -700.0
+offset_bottom = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+
+[node name="Line4" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -700.0
+offset_right = 63.0
+offset_bottom = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+
+[node name="Line3" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 462.0
+offset_top = -700.0
+offset_right = 462.0
+offset_bottom = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+
+[node name="Line5" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 527.0
+offset_top = -687.0
+offset_right = 527.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+
+[node name="InnerRight" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 445.0
+offset_top = -700.0
+offset_right = 445.0
+offset_bottom = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+
+[node name="InnerLeft" type="Panel" parent="AlignmentHelper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -700.0
+offset_right = 80.0
+offset_bottom = -697.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
 
 [connection signal="pressed" from="ColorRect/StateButtons/NextButton" to="." method="_next_state_pressed"]
 [connection signal="pressed" from="ColorRect/BottomPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -411,4 +512,5 @@ texture = ExtResource("8_mfab3")
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList" to="." method="_on_audio_selected"]
 [connection signal="item_selected" from="ColorRect/SettingsPanel/ItemList2" to="." method="_on_theme_select"]
 [connection signal="value_changed" from="ColorRect/SettingsPanel/VolumeSlider" to="ButtonsController" method="_on_volume_changed"]
+[connection signal="pressed" from="ColorRect/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -142,4 +142,9 @@ func _on_theme_select(index: int) -> void:
 			
 	ui_controller.update_background_colors(current_color_profile.background_color)
 
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
+
+
 #endregion
