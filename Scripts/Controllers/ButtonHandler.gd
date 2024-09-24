@@ -9,7 +9,7 @@ func _on_always_ontop(toggled_on: bool) -> void:
 #Changing Durations
 func _on_worktime_changed(value: float) -> void:
 	var new_time : int = round(60*value)
-	Global.work_duration = new_time
+	Global.focus_duration = new_time
 
 
 func _on_pausetime_changed(value: float) -> void:
